@@ -53,6 +53,9 @@ void findOrCreateVertex(int v1, int u1, int n1) {
     def->vertex_index = v1;
     def->uv_index = u1;
     def->normal_index = n1;
+//printVertexDef(def);
+//printVertexDef(&(vertex_defs[vertexIndex]));
+//printVertexDef(&(vertex_defs[0]));
     def->index = vertexIndex++;
   }
 }
@@ -78,12 +81,10 @@ void loadModel(const char* path) {
   }
   rewind(fp);
 
-  //printf("Found %d normals, %d textures, %d vertices\n", normal, uv, vertex); 
   vertices = (float *)malloc(vertex * sizeof(float) * 3);
   uvs = (float *)malloc(uv * sizeof(float) * 2);
   normals = (float *)malloc(normal * sizeof(float) * 3);
-
-  vertex_defs = (VertexDef *)malloc(uv * sizeof(VertexDef));
+  vertex_defs = (VertexDef *)malloc(uv * vertex * normal * sizeof(VertexDef));
 
   normal = 0; vertex = 0; uv = 0;
 
@@ -110,7 +111,7 @@ void loadModel(const char* path) {
     // vertices
     else if (line[0] == 'v') {
       int items = sscanf(line, "v %g %g %g", &x, &y, &z);
-      printf("Vertex %d: %f, %f, %f,\n", vertex, x, y, z);
+      //printf("Vertex %d: %f, %f, %f,\n", vertex, x, y, z);
       vertices[3 * vertex] = x;
       vertices[3 * vertex + 1] = y;
       vertices[3 * vertex + 2] = z;
@@ -135,6 +136,10 @@ void loadModel(const char* path) {
   printf("};\n\n");
 }
 
-int main() {
-  loadModel("/Users/josh0/Desktop/untitled.obj");
+int main(int argc, const char** argv) {
+  if (argc < 2) {
+    return 2;
+  }
+  loadModel(argv[1]);
+  return 0;
 }

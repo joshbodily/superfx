@@ -8,6 +8,8 @@
 #include <gl-matrix.h>
 #include <assert.h>
 
+#include "model.h"
+
 GLuint program;
 
 void render() {
@@ -20,11 +22,13 @@ void render() {
     glVertex2f( 0.5f, 0.5f );
     glVertex2f( -0.5f, 0.5f );
   glEnd();
+  glLoadIdentity();
 }
 
+GLuint quadVBO;
 GLuint modelVBO;
 GLuint modelIBO;
-GLuint indices[] = {
+/*GLuint indices[] = {
   1, 3, 0,
   7, 5, 4,
   4, 1, 0,
@@ -48,40 +52,8 @@ float data[] = {//{1.0, 0.0, 1.0, 0.0, 0.0, -1.0, -1.0, 0.0, 1.0};
   0.336595, 1.000000, 0.336596, 1.0, 1.0,
   -0.336596, 1.000000, 0.336596, 1.0, 0.0,
   -0.336596, 1.000000, -0.336596, 0.0, 1.0
-};
+};*/
 
-void loadModel(const char* path) {
-  FILE * fp;
-  char * line = NULL;
-  size_t len = 0;
-  ssize_t read;
-
-  float x,y,z;
-  int v1,u1,n1, v2,u2,n2, v3,u3,n3;
-
-  fp = fopen(path, "r");
-  while ((read = getline(&line, &len, fp)) != -1) {
-    // vertices
-    if (line[0] == 'v' && line[1] != 'n' && line[1] != 't') {
-      int items = sscanf(line, "v %g %g %g", &x, &y, &z);
-      printf("%f, %f, %f,\n", x, y, z);
-    }
-    if (line[0] == 'f') {
-      int items = sscanf(line, "f %d/%d/%d %d/%d/%d %d/%d/%d", &v1, &u1, &n1, &v2, &u2, &n2, &v3, &u3, &n3);
-      printf("%d, %d, %d,\n", v1 - 1, v2 - 1, v3 - 1);
-    }
-  }
-
-  glGenBuffers(1, &modelVBO);
-  glBindBuffer(GL_ARRAY_BUFFER, modelVBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(data) * sizeof(float), data, GL_STATIC_DRAW);
-
-  glGenBuffers(1, &modelIBO);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices) * sizeof(GLuint), indices, GL_STATIC_DRAW);
-
-  fclose(fp);
-}
 
 char* getFileData(const char* path) {
 	FILE* f = fopen(path, "rb");
@@ -112,6 +84,7 @@ int compileShaders(const char* vert, const char* frag) {
 		GLint maxLength = 0;
 		glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &maxLength);
 		glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &errors);
+		printf("%s > %s", vert, errors);
 		glDeleteShader(vertexShader);
 		return 1;
 	}
@@ -180,8 +153,22 @@ int main() {
     return 1;
   }
 
-  loadModel("/Users/josh0/Desktop/untitled.obj");
-	compileShaders("shader.vert", "shader.frag");
+  // quad
+  float quad[] = { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0 };
+  glGenBuffers(1, &quadVBO);
+  glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(quad) * sizeof(float), quad, GL_STATIC_DRAW);
+
+  //loadModel("/Users/josh0/Desktop/untitled.obj");
+  glGenBuffers(1, &modelVBO);
+  glBindBuffer(GL_ARRAY_BUFFER, modelVBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(data) * sizeof(float), data, GL_STATIC_DRAW);
+
+  glGenBuffers(1, &modelIBO);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIBO);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices) * sizeof(GLuint), indices, GL_STATIC_DRAW);
+
+	compileShaders("/Users/josh0/superfx/shader.vert", "/Users/josh0/superfx/shader.frag");
   
   // Create FBO
 	// create a texture object
@@ -193,13 +180,13 @@ int main() {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE); // automatic mipmap
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 16, 16, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	// create a renderbuffer object to store depth info
 	GLuint rboId;
 	glGenRenderbuffers(1, &rboId);
 	glBindRenderbuffer(GL_RENDERBUFFER, rboId);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 16, 16);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 256, 256);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 	// create a framebuffer object
 	GLuint fboId;
@@ -221,9 +208,9 @@ int main() {
 	if(status != GL_FRAMEBUFFER_COMPLETE)
 		return 2;
 	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
-	glClearColor(0.0, 0.0, 0.7, 1);
+	glClearColor(0.0, 1.0, 0.7, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
-	glViewport(0,0,16,16);
+	glViewport(0,0,256,256);
 	render();
 
 	glBindTexture(GL_TEXTURE_2D, textureId);
@@ -233,10 +220,15 @@ int main() {
 	// revert back to main buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glViewport(0,0,640,480);
+  
+  //glBindFramebuffer(GL_FRAMEBUFFER, fboId);
+  //glViewport(0, 0, 256, 256);
 
+  mat4_t identity;
   mat4_t view;
   mat4_t model;
   mat4_t perspective;
+  identity = mat4_create(NULL);
   perspective = mat4_create(NULL);
   model = mat4_create(NULL);
   view = mat4_create(NULL);
@@ -272,9 +264,8 @@ int main() {
 		glEnable(GL_CULL_FACE);
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 		glDisable(GL_LIGHTING);
-		//glEnable(GL_TEXTURE_2D);
 
-		//glViewport(0,0,640,480);
+		glViewport(0,0,640,480);
 		glClearColor(0, 255, 0, 255);
 		glClear(GL_COLOR_BUFFER_BIT);
 
@@ -289,23 +280,23 @@ int main() {
     glUniformMatrix4fv(projectionID, 1, GL_FALSE, perspective);
     glUniformMatrix4fv(modelID, 1, GL_FALSE, model);
     glUniformMatrix4fv(viewID, 1, GL_FALSE, view);
+
     // bind texture
-    GLuint texLoc = glGetUniformLocation(program, "texture");
+    /*GLuint texLoc = glGetUniformLocation(program, "texture");
     assert(texLoc != -1);
     glUniform1i(texLoc, 0);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureId);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);*/
 
     // First pass, just fixed pipeline
 		/*glBegin(GL_TRIANGLE_STRIP);
-      glTexCoord2f(0.0, 1.0); glVertex3f(-1.f, 1.f, 0.f);
-      glTexCoord2f(1.0, 1.0); glVertex3f(1.f, 1.f, 0.f);
-      glTexCoord2f(0.0, 0.0); glVertex3f(-1.f, -1.f, 0.f);
-      glTexCoord2f(1.0, 0.0); glVertex3f(1.f, -1.f, 0.f);
+      glTexCoord2f(0.0, 1.0); glVertex3f(-1.f, 1.f, 0.f); glNormal3f(1.0f, 0.0f, 0.0f);
+      glTexCoord2f(1.0, 1.0); glVertex3f(1.f, 1.f, 0.f); glNormal3f(0.0f, 1.0f, 0.0f);
+      glTexCoord2f(0.0, 0.0); glVertex3f(-1.f, -1.f, 0.f); glNormal3f(0.0f, 0.0f, 1.0f);
+      glTexCoord2f(1.0, 0.0); glVertex3f(1.f, -1.f, 0.f); glNormal3f(0.0f, 1.0f, 1.0f);
 		glEnd();*/
-
 
     // Second pass, array of vertices
     /*glBindBuffer(GL_ARRAY_BUFFER, modelVBO);
@@ -318,11 +309,22 @@ int main() {
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
     glBindBuffer(GL_ARRAY_BUFFER, modelVBO);
-    glVertexPointer(3, GL_FLOAT, 5 * sizeof(float) /* stride, 0 if just vertices */, 0);
-    glTexCoordPointer(2, GL_FLOAT, 5 * sizeof(float) /* stride, 0 if just vertices */, 3 * sizeof(float));
-    //glNormalPointer(GL_FLOAT, 8 * sizeof(float) /* stride, 0 if just vertices */, 5 * sizeof(float));
+    glVertexPointer(3, GL_FLOAT, 8 * sizeof(float), 0);
+    glTexCoordPointer(2, GL_FLOAT, 8 * sizeof(float), 3 * sizeof(float));
+    glNormalPointer(GL_FLOAT, 8 * sizeof(float), 5 * sizeof(float));
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIBO);
     glDrawElements(GL_TRIANGLES, 12 * 3, GL_UNSIGNED_INT, NULL);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+
+    //glUseProgram(0);
+    /*glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glVertexPointer(3, GL_FLOAT, 0, NULL);
+    glTexCoordPointer(2, GL_FLOAT, 0, 2);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(quad) / sizeof(float) / 3);*/
 
     SDL_GL_SwapWindow(window);
   }

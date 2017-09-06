@@ -1,4 +1,4 @@
-// gcc -g -w superfx.c -framework OpenGL -lSDL2 -lgl-matrix
+// gcc -w -g superfx.c writepng.c -framework OpenGL -lSDL2 -lgl-matrix -lpng
 
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
@@ -8,7 +8,11 @@
 #include <assert.h>
 #include "stdio.h"
 #include "model.h"
+//#include "model2.h"
 
+#define PI_2 3.141592 * 0.5
+
+GLuint png_texture_load(const char * file_name, int * width, int * height);
 int save_png_to_file (GLubyte*, const char *path);
 
 // Render to texture
@@ -19,6 +23,13 @@ GLuint modelIBO;
 
 // Render full-screen quad
 GLuint program2;
+
+//
+GLuint imageTextureId;
+
+// Arwing state
+float roll = 0.0f;
+float pitch = 0.0f;
 
 char* getFileData(const char* path) {
 	FILE* f = fopen(path, "rb");
@@ -101,13 +112,9 @@ int compileShaders(const char* vert, const char* frag, GLuint* program) {
 void renderQuad() {
   glViewport(0,0,512,512);
   glClearColor(0, 0, 1, 255);
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glUseProgram(program2);
-
-  //glBindTexture(GL_TEXTURE_2D, textureId);
-  //glGenerateMipmap(GL_TEXTURE_2D);
-  //glBindTexture(GL_TEXTURE_2D, 0);
 
   // bind texture
   GLuint texLoc = glGetUniformLocation(program2, "texture");
@@ -115,6 +122,7 @@ void renderQuad() {
   glUniform1i(texLoc, 0);
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, textureId);
+  //glBindTexture(GL_TEXTURE_2D, imageTextureId);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
@@ -124,13 +132,29 @@ void renderQuad() {
     glTexCoord2f(0.0f, 1.0f); glVertex2f(-1.0f,  1.0f);
     glTexCoord2f(1.0f, 1.0f); glVertex2f( 1.0f,  1.0f);
   glEnd();
+}
 
-  /*glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-  glEnableClientState(GL_VERTEX_ARRAY);
-  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-  glVertexPointer(3, GL_FLOAT, 0, NULL);
-  glTexCoordPointer(2, GL_FLOAT, 0, 2);
-  glDrawArrays(GL_TRIANGLES, 0, sizeof(quad) / sizeof(float) / 3);*/
+void processKeyboardInput(SDL_Event* event) {
+  static short left, right, up, down = 0;
+  if (event) {
+    if (event->type == SDL_KEYDOWN) {
+      if (event->key.keysym.sym == SDLK_LEFT) { left = 1; } 
+      if (event->key.keysym.sym == SDLK_RIGHT) { right = 1; } 
+      if (event->key.keysym.sym == SDLK_UP) { up = 1; } 
+      if (event->key.keysym.sym == SDLK_DOWN) { down = 1; } 
+    }
+    if (event->type == SDL_KEYUP) {
+      if (event->key.keysym.sym == SDLK_LEFT) { left = 0; } 
+      if (event->key.keysym.sym == SDLK_RIGHT) { right = 0; } 
+      if (event->key.keysym.sym == SDLK_UP) { up = 0; } 
+      if (event->key.keysym.sym == SDLK_DOWN) { down = 0; } 
+    }
+  } else {
+    if (left) { roll -= PI_2 * 0.02; }
+    if (right) { roll += PI_2 * 0.02; }
+    if (up) { pitch -= PI_2 * 0.02; }
+    if (down) { pitch += PI_2 * 0.02; }
+  }
 }
 
 void renderToTexture() {
@@ -138,25 +162,26 @@ void renderToTexture() {
   glUseProgram(program);
 
   mat4_t view;
-  mat4_t model;
+  mat4_t model, temp;
   mat4_t perspective;
   perspective = mat4_create(NULL);
   model = mat4_create(NULL);
+  temp = mat4_create(NULL);
   view = mat4_create(NULL);
   // perspective
   mat4_identity(perspective);
   mat4_perspective(60.0, 1.0, 1.0, 1000.0, perspective);
   // view
   mat4_identity(view);
-  float translate[3] = {0.0f, 0.0f, -10.0f};
+  float translate[3] = {0.0f, 0.0f, -3.0f};
   mat4_translate(view, translate, view);
 
   // rotate model
-  static float rot = 0.0f;
-  rot += 0.01f;
-  mat4_identity(model);
-  float axis[3] = {0.707f, 0.707f, 0.0f};
-  mat4_rotate(model, rot, axis, NULL);
+  mat4_identity(temp);
+  mat4_rotateX(temp, -PI_2, NULL);
+  mat4_rotateY(temp, roll * 0.33, temp);
+  mat4_rotateZ(temp, -roll , temp); // yaw, should be opposite
+  mat4_rotateX(temp, pitch, model);
 
   GLuint projectionID = glGetUniformLocation(program, "perspective");
   GLuint modelID = glGetUniformLocation(program, "model");
@@ -170,15 +195,19 @@ void renderToTexture() {
   glUniformMatrix4fv(viewID, 1, GL_FALSE, view);
 
   // Third pass, index array
+  size_t stride = 11 * sizeof(float);
   glEnableClientState(GL_VERTEX_ARRAY);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glEnableClientState(GL_NORMAL_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
   glBindBuffer(GL_ARRAY_BUFFER, modelVBO);
-  glVertexPointer(3, GL_FLOAT, 8 * sizeof(float), 0);
-  glTexCoordPointer(2, GL_FLOAT, 8 * sizeof(float), 3 * sizeof(float));
-  glNormalPointer(GL_FLOAT, 8 * sizeof(float), 5 * sizeof(float));
+  glVertexPointer(3, GL_FLOAT, stride, 0);
+  glNormalPointer(GL_FLOAT, stride, 3 * sizeof(float));
+  glTexCoordPointer(2, GL_FLOAT, stride, 6 * sizeof(float));
+  glColorPointer(3, GL_FLOAT, stride, 8 * sizeof(float));
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIBO);
-  glDrawElements(GL_TRIANGLES, 12 * 3, GL_UNSIGNED_INT, NULL);
+  glDrawElements(GL_TRIANGLES, sizeof(indices) / 3, GL_UNSIGNED_INT, NULL);
+  glDisableClientState(GL_COLOR_ARRAY);
   glDisableClientState(GL_VERTEX_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
   glDisableClientState(GL_NORMAL_ARRAY);
@@ -204,6 +233,9 @@ int main() {
 	if (context == NULL) {
     return 3;
   }
+
+  // load any textures
+  imageTextureId = png_texture_load("out.png", NULL, NULL);
 
   // quad
   //float quad[] = { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0 };
@@ -249,6 +281,11 @@ int main() {
 												 GL_TEXTURE_2D,         // 3. tex target: GL_TEXTURE_2D
 												 textureId,             // 4. tex ID
 												 0);                    // 5. mipmap level: 0(base)
+  // attach depthbuffer image to FBO
+  glFramebufferRenderbuffer(GL_FRAMEBUFFER,       // 1. fbo target: GL_FRAMEBUFFER
+                            GL_DEPTH_ATTACHMENT,  // 2. depth attachment point
+                            GL_RENDERBUFFER,      // 3. rbo target: GL_RENDERBUFFER
+                            rboId);          // 4. rbo ID
 	// check FBO status & render
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if (status != GL_FRAMEBUFFER_COMPLETE) {
@@ -269,16 +306,18 @@ int main() {
       if (event.type == SDL_QUIT) {
         run = 0;
       }
+      processKeyboardInput(&event);
     }
+    processKeyboardInput(NULL);
 
-
+		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
 		glDisable(GL_LIGHTING);
 
     glBindFramebuffer(GL_FRAMEBUFFER, fboId);
 		glViewport(0,0,256,256);
-		glClearColor(0, 1, 0, 255);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClearColor(0, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     renderToTexture();
 

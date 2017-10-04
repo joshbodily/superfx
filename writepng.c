@@ -114,7 +114,9 @@ GLuint png_texture_load(const char * file_name, int * width, int * height)
   png_read_image(png_ptr, row_pointers);
 
   // Generate the OpenGL texture object
-  GLuint texture;
+  GLuint texture = 0;
+  //GLuint texture;
+
   glGenTextures(1, &texture);
   glBindTexture(GL_TEXTURE_2D, texture);
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, temp_width, temp_height, 0, GL_RGB, GL_UNSIGNED_BYTE, image_data);

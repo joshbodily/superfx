@@ -10,10 +10,12 @@
 #include "model.h"
 //#include "model2.h"
 
+#include "parse.c"
+
 #define PI_2 3.141592 * 0.5
 
 GLuint png_texture_load(const char * file_name, int * width, int * height);
-int save_png_to_file (GLubyte*, const char *path);
+int save_png_to_file(GLubyte*, const char *path);
 
 // Render to texture
 GLuint textureId;
@@ -25,7 +27,6 @@ GLuint modelIBO;
 GLuint program2;
 
 //
-GLuint imageTextureId;
 
 // Arwing state
 float roll = 0.0f;
@@ -109,28 +110,27 @@ int compileShaders(const char* vert, const char* frag, GLuint* program) {
 	return 0;
 }
 
-void renderQuad() {
-  glViewport(0,0,512,512);
-  glClearColor(0, 0, 1, 255);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+void renderQuad(GLuint texture, int x, int y, int w, int h) {
   glUseProgram(program2);
-
   // bind texture
   GLuint texLoc = glGetUniformLocation(program2, "texture");
   assert(texLoc != -1);
   glUniform1i(texLoc, 0);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, textureId);
-  //glBindTexture(GL_TEXTURE_2D, imageTextureId);
+  glBindTexture(GL_TEXTURE_2D, texture);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
+  float x_normalized = (x - 128.0) / 128.0;
+  float y_normalized = (y - 128.0) / 128.0;
+  float width_normalized = w / 256.0;
+  float height_normalized = h / 256.0;
+
   glBegin(GL_TRIANGLE_STRIP);
-    glTexCoord2f(0.0f, 0.0f); glVertex2f(-1.0f, -1.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex2f( 1.0f, -1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex2f(-1.0f,  1.0f);
-    glTexCoord2f(1.0f, 1.0f); glVertex2f( 1.0f,  1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex2f(x_normalized, y_normalized);
+    glTexCoord2f(1.0f, 0.0f); glVertex2f(x_normalized + width_normalized, y_normalized);
+    glTexCoord2f(0.0f, 1.0f); glVertex2f(x_normalized, y_normalized + height_normalized);
+    glTexCoord2f(1.0f, 1.0f); glVertex2f(x_normalized + width_normalized,  y_normalized + height_normalized);
   glEnd();
 }
 
@@ -157,7 +157,7 @@ void processKeyboardInput(SDL_Event* event) {
   }
 }
 
-void renderToTexture() {
+void renderModel() {
   // Pass data to shaders
   glUseProgram(program);
 
@@ -235,7 +235,16 @@ int main() {
   }
 
   // load any textures
-  imageTextureId = png_texture_load("out.png", NULL, NULL);
+  
+  int count = 0;
+  TextureDef* textures = parse(&count);  
+  assert(count > 0);
+  for (int i = 0; i < count; ++i) {
+    printf("%s %d %dx%d\n", textures[i].name, textures[i].id, textures[i].width, textures[i].height);
+  }
+  //imageTextureId = png_texture_load("slippy.png", NULL, NULL);
+  //assert(imageTextureId);
+  //imageTextureId = png_texture_load("out.png", NULL, NULL);
 
   // quad
   //float quad[] = { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0 };
@@ -315,14 +324,21 @@ int main() {
 		glDisable(GL_LIGHTING);
 
     glBindFramebuffer(GL_FRAMEBUFFER, fboId);
-		glViewport(0,0,256,256);
-		glClearColor(0, 0, 0, 1);
+		glViewport(0, 0, 256, 256);
+		glClearColor(156.0/255.0, 219.0/255.0, 111.0/255.0, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderToTexture();
+    renderQuad(textures[0].id, 0, 0, 256 * 2, 256 * 2);
+		glClear(GL_DEPTH_BUFFER_BIT);
+    renderModel();
+    renderQuad(textures[1].id, 8, 8, 64 * 2, 64 * 2);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    renderQuad();
+
+    glViewport(0, 0, 512, 512);
+    glClearColor(0, 0, 0, 255);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    renderQuad(textureId, 0, 0, 512, 512);
 
 
     SDL_GL_SwapWindow(window);

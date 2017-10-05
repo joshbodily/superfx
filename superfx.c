@@ -7,9 +7,8 @@
 #include <gl-matrix.h>
 #include <assert.h>
 #include "stdio.h"
-#include "model.h"
-//#include "model2.h"
 
+// TODO: Fix
 #include "parse.c"
 
 #define PI_2 3.141592 * 0.5
@@ -20,17 +19,14 @@ int save_png_to_file(GLubyte*, const char *path);
 // Render to texture
 GLuint textureId;
 GLuint program;
-GLuint modelVBO;
-GLuint modelIBO;
 
 // Render full-screen quad
 GLuint program2;
 
-//
-
 // Arwing state
 float roll = 0.0f;
 float pitch = 0.0f;
+float z = 0.0f;
 
 char* getFileData(const char* path) {
 	FILE* f = fopen(path, "rb");
@@ -157,7 +153,7 @@ void processKeyboardInput(SDL_Event* event) {
   }
 }
 
-void renderModel() {
+void renderModel(ModelDef* draw) {
   // Pass data to shaders
   glUseProgram(program);
 
@@ -178,6 +174,9 @@ void renderModel() {
 
   // rotate model
   mat4_identity(temp);
+  z -= 0.0166f;
+  float translate_model[3] = {0.0f, 0.0f, z};
+  mat4_translate(temp, translate_model, temp);
   mat4_rotateX(temp, -PI_2, NULL);
   mat4_rotateY(temp, roll * 0.33, temp);
   mat4_rotateZ(temp, -roll , temp); // yaw, should be opposite
@@ -200,13 +199,15 @@ void renderModel() {
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glEnableClientState(GL_NORMAL_ARRAY);
   glEnableClientState(GL_COLOR_ARRAY);
-  glBindBuffer(GL_ARRAY_BUFFER, modelVBO);
+
+  glBindBuffer(GL_ARRAY_BUFFER, draw->verticesID);
   glVertexPointer(3, GL_FLOAT, stride, 0);
   glNormalPointer(GL_FLOAT, stride, 3 * sizeof(float));
   glTexCoordPointer(2, GL_FLOAT, stride, 6 * sizeof(float));
   glColorPointer(3, GL_FLOAT, stride, 8 * sizeof(float));
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIBO);
-  glDrawElements(GL_TRIANGLES, sizeof(indices) / 3, GL_UNSIGNED_INT, NULL);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->indicesID);
+  glDrawElements(GL_TRIANGLES, draw->num_indices, GL_UNSIGNED_INT, NULL);
+
   glDisableClientState(GL_COLOR_ARRAY);
   glDisableClientState(GL_VERTEX_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -242,23 +243,9 @@ int main() {
   for (int i = 0; i < count; ++i) {
     printf("%s %d %dx%d\n", textures[i].name, textures[i].id, textures[i].width, textures[i].height);
   }
-  //imageTextureId = png_texture_load("slippy.png", NULL, NULL);
-  //assert(imageTextureId);
-  //imageTextureId = png_texture_load("out.png", NULL, NULL);
 
-  // quad
-  //float quad[] = { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0 };
-  //glGenBuffers(1, &quadVBO);
-  //glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-  //glBufferData(GL_ARRAY_BUFFER, sizeof(quad) * sizeof(float), quad, GL_STATIC_DRAW);
-
-  glGenBuffers(1, &modelVBO);
-  glBindBuffer(GL_ARRAY_BUFFER, modelVBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(data) * sizeof(float), data, GL_STATIC_DRAW);
-
-  glGenBuffers(1, &modelIBO);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices) * sizeof(GLuint), indices, GL_STATIC_DRAW);
+  // load all models
+  ModelDef* models = parse_models(&count);
 
 	compileShaders("/Users/josh0/superfx/shader.vert", "/Users/josh0/superfx/shader.frag", &program);
 	compileShaders("/Users/josh0/superfx/shader2.vert", "/Users/josh0/superfx/shader2.frag", &program2);
@@ -326,15 +313,16 @@ int main() {
     glBindFramebuffer(GL_FRAMEBUFFER, fboId);
 		glViewport(0, 0, 256, 256);
 		glClearColor(156.0/255.0, 219.0/255.0, 111.0/255.0, 1);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderQuad(textures[0].id, 0, 0, 256 * 2, 256 * 2);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //renderQuad(textures[0].id, 0, 0, 256 * 2, 256 * 2);
+
 		glClear(GL_DEPTH_BUFFER_BIT);
-    renderModel();
+    renderModel(&(models[0]));
     renderQuad(textures[1].id, 8, 8, 64 * 2, 64 * 2);
 
+    // Render scaled full-screen quad
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
     glViewport(0, 0, 512, 512);
     glClearColor(0, 0, 0, 255);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

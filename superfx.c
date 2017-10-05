@@ -247,8 +247,8 @@ int main() {
   // load all models
   ModelDef* models = parse_models(&count);
 
-	compileShaders("/Users/josh0/superfx/shader.vert", "/Users/josh0/superfx/shader.frag", &program);
-	compileShaders("/Users/josh0/superfx/shader2.vert", "/Users/josh0/superfx/shader2.frag", &program2);
+	compileShaders("shaders/shader.vert", "shaders/shader.frag", &program);
+	compileShaders("shaders/shader2.vert", "shaders/shader2.frag", &program2);
   
   // Create FBO
 	// create a texture object
@@ -319,7 +319,7 @@ int main() {
 
 		glClear(GL_DEPTH_BUFFER_BIT);
     renderModel(&(models[0]));
-    renderQuad(textures[1].id, 8, 8, 64 * 2, 64 * 2);
+    renderQuad(textures[0].id, 8, 8, 64 * 2, 64 * 2);
 
     // Render scaled full-screen quad
     glBindFramebuffer(GL_FRAMEBUFFER, 0);

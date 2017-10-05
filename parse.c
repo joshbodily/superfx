@@ -32,7 +32,7 @@ GLuint png_texture_load(const char * file_name, int * width, int * height);
 TextureDef* parse(int* out) {
   DIR *d;
   struct dirent *dir;
-  d = opendir(".");
+  d = opendir("textures");
   int count = 0;
   TextureDef* textures;
   if (d) {
@@ -48,7 +48,9 @@ TextureDef* parse(int* out) {
       if (strstr(dir->d_name, ".png") != NULL) {
         TextureDef* texture = &(textures[i++]);
         strcpy(texture->name, dir->d_name);
-        texture->id = png_texture_load(dir->d_name, &texture->width, &texture->height); 
+        char path[128];
+        sprintf(path, "textures/%s", texture->name);
+        texture->id = png_texture_load(path, &texture->width, &texture->height); 
       }
     }
     closedir(d);
@@ -58,7 +60,7 @@ TextureDef* parse(int* out) {
   return textures;
 }
 
-void print_model(ModelDef* model) {
+/*void print_model(ModelDef* model) {
   printf("name: %s\n", model->name);
   printf("verticesID: %d\n", model->verticesID);
   printf("indicesID: %d\n", model->indicesID);
@@ -70,12 +72,12 @@ void print_model(ModelDef* model) {
 
   printf("first %f\n", model->vertices[0]);
   printf("last %f\n", model->vertices[681]);
-}
+}*/
 
 ModelDef* parse_models(int* out) {
   DIR *d;
   struct dirent *dir;
-  d = opendir(".");
+  d = opendir("models");
   int count = 0;
   ModelDef* models;
   if (d) {
@@ -91,8 +93,10 @@ ModelDef* parse_models(int* out) {
       if (strstr(dir->d_name, ".ply") != NULL) {
         ModelDef* model = &(models[i++]);
         strcpy(model->name, dir->d_name);
-        parse_model(dir->d_name, model);
-print_model(model);
+        char path[128];
+        sprintf(path, "models/%s", model->name);
+        parse_model(path, model);
+//print_model(model);
       }
     }
     closedir(d);

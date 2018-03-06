@@ -1,6 +1,6 @@
 ply
 format ascii 1.0
-comment Created by Blender 2.79 (sub 0) - www.blender.org, source file: 'starfox.blend'
+comment Created by Blender 2.78 (sub 0) - www.blender.org, source file: 'starfox.blend'
 element vertex 66
 property float x
 property float y

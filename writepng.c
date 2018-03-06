@@ -1,5 +1,6 @@
 #include <OpenGL/gl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <png.h>
 
 GLuint png_texture_load(const char * file_name, int * width, int * height)
@@ -119,7 +120,7 @@ GLuint png_texture_load(const char * file_name, int * width, int * height)
 
   glGenTextures(1, &texture);
   glBindTexture(GL_TEXTURE_2D, texture);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, temp_width, temp_height, 0, GL_RGB, GL_UNSIGNED_BYTE, image_data);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, temp_width, temp_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 

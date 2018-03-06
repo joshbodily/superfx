@@ -615,9 +615,9 @@ mat4_t mat4_lookAt(vec3_t eye, vec3_t center, vec3_t up, mat4_t dest) {
         centery = center[1],
         centerz = center[2];
 
-    if (eyex == centerx && eyey == centery && eyez == centerz) {
+    /*if (eyex == centerx && eyey == centery && eyez == centerz) {
         return mat4_identity(dest);
-    }
+    }*/
 
     //vec3.direction(eye, center, z);
     z0 = eyex - centerx;
@@ -675,6 +675,7 @@ mat4_t mat4_lookAt(vec3_t eye, vec3_t center, vec3_t up, mat4_t dest) {
     dest[9] = y2;
     dest[10] = z2;
     dest[11] = 0;
+
     dest[12] = -(x0 * eyex + x1 * eyey + x2 * eyez);
     dest[13] = -(y0 * eyex + y1 * eyey + y2 * eyez);
     dest[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);

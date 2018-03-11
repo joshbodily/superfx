@@ -10,4 +10,5 @@ find_package(Lua51 REQUIRED)
 file(GLOB superfx_SRC "*.c")
 
 add_executable(superfx ${superfx_SRC})
+target_compile_options(superfx PRIVATE "-Wno-implicit-function-declaration")
 target_link_libraries(superfx SDL2 SDL2_ttf GL lua5.1 m gl-matrix png)

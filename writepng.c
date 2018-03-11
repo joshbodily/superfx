@@ -1,4 +1,4 @@
-#include <GL/gl.h>
+#include "superfx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <png.h>

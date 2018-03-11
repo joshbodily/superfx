@@ -1,8 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <gl-matrix.h>
-#include <GL/gl.h>
+#include "superfx.h"
 
 typedef struct {
   GLuint verticesID;

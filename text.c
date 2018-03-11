@@ -1,4 +1,4 @@
-#include <GL/gl.h>
+#include "superfx.h"
 #include <assert.h>
 #include <dirent.h>
 #include "text.h"

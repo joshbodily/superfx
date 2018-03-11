@@ -1,8 +1,5 @@
-#include <GL/gl.h>
+#include "superfx.h"
 #include <ctype.h>
-#include <lua5.1/lua.h>
-#include <lua5.1/lauxlib.h>
-#include <lua5.1/lualib.h>
 #include <assert.h>
 #include "console.h"
 #include "text.h"

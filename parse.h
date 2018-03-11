@@ -1,8 +1,7 @@
 #ifndef PARSE_H
 #define PARSE_H
 
-#include <GL/gl.h>
-#include "parse.h"
+#include "superfx.h"
 #include "entity.h"
 
 extern TextureDef* g_textures;

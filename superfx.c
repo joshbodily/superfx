@@ -1,14 +1,5 @@
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glext.h>
-#include <SDL2/SDL.h>
-#include <gl-matrix.h>
-#include <lua5.1/lua.h>
-#include <lua5.1/lauxlib.h>
-#include <lua5.1/lualib.h>
-#include <assert.h>
-#include <stdbool.h>
 #include <stdio.h>
+#include "superfx.h"
 #include "entity.h"
 #include "parse.h"
 #include "text.h"

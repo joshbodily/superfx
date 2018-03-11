@@ -1,11 +1,11 @@
 // gcc parse.c writepng.c -lpng -lGL
 #include <dirent.h>
-#include <GL/gl.h>
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "entity.h"
+#include "superfx.h"
 #include "parse.h"
 
 #define SHADOW_FLAG 0x1

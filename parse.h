@@ -1,7 +1,7 @@
 #ifndef PARSE_H
 #define PARSE_H
 
-#include <OpenGL/gl.h>
+#include <GL/gl.h>
 #include "parse.h"
 #include "entity.h"
 

@@ -4,8 +4,8 @@
 #include "console.h"
 #include <assert.h>
 #include <stdlib.h>
-#include <lualib.h>
-#include <lauxlib.h>
+#include <lua5.1/lualib.h>
+#include <lua5.1/lauxlib.h>
 
 #define PI_2 3.141592 * 0.5
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))

@@ -1,0 +1,3 @@
+/home/josh/superfx/CMakeFiles/edit_cache.dir
+/home/josh/superfx/CMakeFiles/rebuild_cache.dir
+/home/josh/superfx/CMakeFiles/superfx.dir

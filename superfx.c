@@ -1,12 +1,11 @@
-#include <glib.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/glext.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glext.h>
 #include <SDL2/SDL.h>
 #include <gl-matrix.h>
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
+#include <lua5.1/lua.h>
+#include <lua5.1/lauxlib.h>
+#include <lua5.1/lualib.h>
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -606,7 +605,7 @@ int main() {
     glViewport(0, 0, 512, 512);
     glClearColor(0, 0, 0, 255);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    renderQuad(textureId, 0, 0, 512, 512, FALSE);
+    renderQuad(textureId, 0, 0, 512, 512, false);
 
     // Collision Test-Bed
     // TODO: For each model in level

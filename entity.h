@@ -2,7 +2,7 @@
 #define ENTITY_H
 
 #include <gl-matrix.h>
-#include <OpenGL/gl.h>
+#include <GL/gl.h>
 
 typedef struct {
   GLuint verticesID;

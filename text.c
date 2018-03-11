@@ -1,4 +1,4 @@
-#include <OpenGL/gl.h>
+#include <GL/gl.h>
 #include <assert.h>
 #include <dirent.h>
 #include "text.h"
@@ -59,7 +59,7 @@ void create_text(const char* font_name, const char* text, SDL_Color color, GLuin
   if (surface == NULL) {
     SDL_LogError(SDL_LOG_CATEGORY_ASSERT, "TTF_RenderText_Blended  error\n");
   }
-  // Bind the SDL_Texture in OpenGL
+  // Bind the SDL_Texture in GL
   //GLuint texture;
   glBindTexture(GL_TEXTURE_2D, texture);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

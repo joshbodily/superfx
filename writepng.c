@@ -1,4 +1,4 @@
-#include <OpenGL/gl.h>
+#include <GL/gl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <png.h>
@@ -114,7 +114,7 @@ GLuint png_texture_load(const char * file_name, int * width, int * height)
   // read the png into image_data through row_pointers
   png_read_image(png_ptr, row_pointers);
 
-  // Generate the OpenGL texture object
+  // Generate the GL texture object
   GLuint texture = 0;
   //GLuint texture;
 

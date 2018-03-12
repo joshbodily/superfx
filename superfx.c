@@ -4,8 +4,8 @@
 #include "parse.h"
 #include "text.h"
 #include "bind.h"
-#include "utils.h"
 #include "console.h"
+#include "utils.h"
 
 #define JOYSTICK_DEAD_ZONE 8000
 #define PI_2 3.141592 * 0.5

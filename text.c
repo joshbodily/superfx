@@ -19,7 +19,7 @@ void init_fonts() {
       }
     }
     rewinddir(d);
-    g_fonts = (Font*)malloc(sizeof(Font) * count + 1);
+    g_fonts = (Font*)malloc(sizeof(Font) * (count + 1));
     int i = 0;
     while ((dir = readdir(d)) != NULL) {
       if (strstr(dir->d_name, ".ttf") != NULL) {

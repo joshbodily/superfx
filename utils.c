@@ -1,20 +1,23 @@
+#include "superfx.h"
 #include "utils.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 char* get_file_data(const char* path, int* length) {
-	FILE* f = fopen(path, "rb");
-  if (f) {
-    fseek(f, 0, SEEK_END);
-    *length = ftell(f);
-    fseek(f, 0, SEEK_SET);
+	FILE* file = fopen(path, "rb");
+  if (file) {
+    fseek(file, 0, SEEK_END);
+    *length = ftell(file);
+    fseek(file, 0, SEEK_SET);
+
     char* buffer = malloc(*length);
     if (buffer) {
-      fread(buffer, 1, *length, f);
+      fread(buffer, 1, *length, file);
+    } else {
+      SDL_LogError(SDL_LOG_CATEGORY_ASSERT, "Could not allocate data for file %s", path);
     }
     buffer[*length] = '\0';
-    fclose(f);
+    fclose(file);
     return buffer;
   }
+  SDL_LogError(SDL_LOG_CATEGORY_ASSERT, "Could not open file %s", path);
   return NULL;
 }

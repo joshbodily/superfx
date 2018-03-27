@@ -1,5 +1,4 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#pragma once
 
 #include "superfx.h"
 
@@ -22,54 +21,49 @@ typedef struct {
   char name[128];
   int width;
   int height;
-} TextureDef; 
+} Texture; 
+
+typedef struct {
+  GLuint texture_id;
+  char* text;
+  int width;
+  int height;
+  int x;
+  int y;
+} Quad; 
 
 typedef struct {
   float x_axis;
   float y_axis;
   float roll;
-  char fire;
+  bool fire;
 } Input;
 
 typedef enum Type {
   NODE = 0x1,
   MODEL = 0x2,
   SPRITE = 0x3,
-  CAMERA = 0x4
+  CAMERA = 0x4,
+  QUAD = 0x5
 } Type;
-
-/*typedef struct Node Node;
-struct Node {
-  //vec3_t position;
-  //vec3_t rotation;
-  Node* parent;
-};*/
 
 typedef struct Entity Entity;
 typedef struct {
-  // Mesh stuff
-  int flags;
   short mode;
-  short modelIndex; 
-  void (*update)(Entity*);
+  short mesh_index; 
 } Model;
 
 typedef struct {
-  // Mesh is implied to be a quad
-  // Sprite stuff
-  short textureId;
-  void (*update)(Entity*);
+  short texture_id;
 } Sprite;
 
 struct Entity {
   Type type;
-  //Node* node;
   mat4_t transform;
   mat4_t inverse_world;
   union {
     Model model;
     Sprite sprite;
+    Quad quad;
   } value;
 };
-
-#endif

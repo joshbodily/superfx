@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 #if __APPLE__
 #include <OpenGL/gl.h>
@@ -16,5 +18,9 @@
 #include <lua5.1/lualib.h>
 
 #include <gl-matrix.h>
+
 #include <assert.h>
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>

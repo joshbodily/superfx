@@ -1,14 +1,15 @@
 arwing = SuperFX.Entity()
 SuperFX.new_mesh_entity(arwing, "starfox.ply")
+SuperFX.move_to(arwing, 0, 5, 3)
 
 ground = SuperFX.Entity()
 SuperFX.new_mesh_entity(ground, "ground.ply")
 SuperFX.scale(ground, 10, 10, 10)
 
 camera = SuperFX.Entity()
-SuperFX.new_camera(camera)
-SuperFX.moveTo(camera, 3, 5, 7)
-SuperFX.lookAt(camera, arwing)
+SuperFX.init_camera(camera)
+SuperFX.move_to(camera, 3, 5, 7)
+SuperFX.look_at(camera, arwing)
 
 -- TODO
 -- get stick x axis
@@ -67,7 +68,7 @@ for k,v in pairs(level.entities) do
   entity = {}
   entity.entity = SuperFX.Entity()
   SuperFX.new_mesh_entity(entity.entity, v.url)
-  SuperFX.moveTo(entity.entity, v.location[1], v.location[2], v.location[3])
+  SuperFX.move_to(entity.entity, v.location[1], v.location[2], v.location[3])
   SuperFX.scale(entity.entity, v.scale[1], v.scale[2], v.scale[3])
   entity.params = v.params
 
@@ -80,8 +81,8 @@ end
 
 function update()
   SuperFX.translate(arwing, 0, 0.075, 0.0)
-  SuperFX.moveTo(camera, 3, 5, 7)
-  SuperFX.lookAt(camera, arwing)
+  SuperFX.move_to(camera, 3, 5, 7)
+  SuperFX.look_at(camera, arwing)
   for k,entity in pairs(entities) do
     if entity.update then
       entity:update()
@@ -91,8 +92,10 @@ end
 
 function render()
   SuperFX.render(arwing)
+  SuperFX.render_shadow(arwing)
   SuperFX.render_points(ground)
   for k,v in pairs(entities) do
     SuperFX.render(v.entity)
+    SuperFX.render_shadow(v.entity)
   end
 end

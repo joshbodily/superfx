@@ -25,18 +25,34 @@ typedef struct {
 
 typedef struct {
   GLuint texture_id;
+  int index;
+  int rows;
+  int columns;
   char* text;
-  int width;
-  int height;
-  int x;
-  int y;
 } Quad; 
 
 typedef struct {
-  float x_axis;
-  float y_axis;
-  float roll;
-  bool fire;
+  float left_trigger;
+  float right_trigger;
+  float left_x_axis;
+  float left_y_axis;
+  float right_x_axis;
+  float right_y_axis;
+  bool up;
+  bool down;
+  bool left;
+  bool right;
+  bool back;
+  bool start;
+  bool xbox;
+  bool y;
+  bool x;
+  bool b;
+  bool a;
+  bool left_shoulder;
+  bool right_shoulder;
+  bool left_joystick;
+  bool right_joystick;
 } Input;
 
 typedef enum Type {
@@ -55,12 +71,15 @@ typedef struct {
 
 typedef struct {
   short texture_id;
+  int index;
+  int rows;
+  int columns;
 } Sprite;
 
 struct Entity {
   Type type;
-  mat4_t transform;
-  mat4_t inverse_world;
+  float transform[16];
+  float inverse_world[16];
   union {
     Model model;
     Sprite sprite;

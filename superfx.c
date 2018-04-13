@@ -12,20 +12,27 @@
 extern void luaopen_SuperFX(lua_State*);
 
 int main() {
+  // TODO: Move to lua?
   Entity background_entity;
   background_entity.type = QUAD;
-  background_entity.value.quad.x = 0;
-  background_entity.value.quad.y = 0;
-  background_entity.value.quad.width = 512;
-  background_entity.value.quad.height = 512;
+  background_entity.transform[12] = 0;
+  background_entity.transform[13] = 0;
+  background_entity.transform[0] = 512;
+  background_entity.transform[5] = 512;
+  background_entity.value.quad.index = 0;
+  background_entity.value.quad.columns = 1;
+  background_entity.value.quad.rows = 1;
 
-  // render_quad(&fbo_entity, 0, 0, 512, 512, false);
+  // TODO: Use bind.c functions?
   Entity fbo_entity;
   fbo_entity.type = QUAD;
-  fbo_entity.value.quad.x = 0;
-  fbo_entity.value.quad.y = 0;
-  fbo_entity.value.quad.width = 512;
-  fbo_entity.value.quad.height = 512;
+  fbo_entity.transform[12] = 0;
+  fbo_entity.transform[13] = 0;
+  fbo_entity.transform[0] = 512;
+  fbo_entity.transform[5] = 512;
+  fbo_entity.value.quad.index = 0;
+  fbo_entity.value.quad.columns = 1;
+  fbo_entity.value.quad.rows = 1;
 
   // Setup Gamepad
   SDL_Joystick* joystick = NULL;
@@ -50,7 +57,7 @@ int main() {
 
 	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 2 );
 	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
-  SDL_Window* window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512, 512, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+  SDL_Window* window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1024, 1024, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 	if (window == NULL) {
     return 2;
   }
@@ -143,7 +150,8 @@ int main() {
 
     // 0. Game logic
     lua_getfield(L, LUA_GLOBALSINDEX, "update");
-    error = lua_pcall(L, 0, 0, 0);
+    lua_pushnumber(L, 1.0f / 30.0f);
+    error = lua_pcall(L, 1, 0, 0);
     if (error) {
       SDL_LogError(SDL_LOG_CATEGORY_ASSERT, "Error %s\n", lua_tostring(L, -1));
       lua_pop(L, 1);
@@ -151,11 +159,11 @@ int main() {
 
     glBindFramebuffer(GL_FRAMEBUFFER, fboId);
 		glViewport(0, 0, 256, 256);
-		glClearColor(0, 0, 0, 1);
+		glClearColor(255, 255, 255, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // 1. Background
-    render_quad(&background_entity);
+    render_quad(&background_entity, false);
 		glClear(GL_DEPTH_BUFFER_BIT);
 
     // 2. Render all entities
@@ -166,19 +174,12 @@ int main() {
       lua_pop(L, 1);
     }
 
-    // 3. UI (Text and or character HUD or icons)
-		glClear(GL_DEPTH_BUFFER_BIT);
-    //glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
-    //render_quad(g_textures[2].id, 8, 8, 64 * 2, 64 * 2, false);
-
-    //render_console(ttfTextureId);
-
     // Render scaled full-screen quad
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(0, 0, 512, 512);
-    glClearColor(0, 0, 0, 255);
+    glViewport(0, 0, 1024, 1024);
+    glClearColor(255, 255, 255, 255);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    render_quad(&fbo_entity);
+    render_quad(&fbo_entity, false);
 
     SDL_GL_SwapWindow(window);
     SDL_Delay(17);
@@ -193,4 +194,3 @@ int main() {
 
   SDL_Quit();
 }
-

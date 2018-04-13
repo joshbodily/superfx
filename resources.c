@@ -358,6 +358,7 @@ void create_text(const char* font_name, int size, const char* text, SDL_Color co
     SDL_LogError(SDL_LOG_CATEGORY_ASSERT, "TTF_OpenFont error\n");
   }
   SDL_Surface *surface = TTF_RenderText_Blended_Wrapped(ttf, text, color, 512);
+  //SDL_Surface *surface = TTF_RenderText_Solid(ttf, text, color);
   if (surface == NULL) {
     SDL_LogError(SDL_LOG_CATEGORY_ASSERT, "TTF_RenderText_Blended  error\n");
   }

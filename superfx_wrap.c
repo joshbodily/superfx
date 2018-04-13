@@ -2662,10 +2662,11 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 #define SWIGTYPE_p_Sprite swig_types[8]
 #define SWIGTYPE_p_Texture swig_types[9]
 #define SWIGTYPE_p_Type swig_types[10]
-#define SWIGTYPE_p_char swig_types[11]
-#define SWIGTYPE_p_mat4_t swig_types[12]
-static swig_type_info *swig_types[14];
-static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
+#define SWIGTYPE_p_Vec3 swig_types[11]
+#define SWIGTYPE_p_char swig_types[12]
+#define SWIGTYPE_p_float swig_types[13]
+static swig_type_info *swig_types[15];
+static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3911,6 +3912,156 @@ fail:
 }
 
 
+static int _wrap_Quad_index_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Quad *arg1 = (Quad *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Quad::index",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::index",1,"Quad *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quad::index",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
+    SWIG_fail_ptr("Quad_index_set",1,SWIGTYPE_p_Quad);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->index = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quad_index_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Quad *arg1 = (Quad *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Quad::index",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::index",1,"Quad *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
+    SWIG_fail_ptr("Quad_index_get",1,SWIGTYPE_p_Quad);
+  }
+  
+  result = (int) ((arg1)->index);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quad_rows_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Quad *arg1 = (Quad *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Quad::rows",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::rows",1,"Quad *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quad::rows",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
+    SWIG_fail_ptr("Quad_rows_set",1,SWIGTYPE_p_Quad);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->rows = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quad_rows_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Quad *arg1 = (Quad *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Quad::rows",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::rows",1,"Quad *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
+    SWIG_fail_ptr("Quad_rows_get",1,SWIGTYPE_p_Quad);
+  }
+  
+  result = (int) ((arg1)->rows);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quad_columns_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Quad *arg1 = (Quad *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Quad::columns",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::columns",1,"Quad *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quad::columns",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
+    SWIG_fail_ptr("Quad_columns_set",1,SWIGTYPE_p_Quad);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->columns = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quad_columns_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Quad *arg1 = (Quad *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Quad::columns",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::columns",1,"Quad *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
+    SWIG_fail_ptr("Quad_columns_get",1,SWIGTYPE_p_Quad);
+  }
+  
+  result = (int) ((arg1)->columns);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Quad_text_set(lua_State* L) {
   int SWIG_arg = 0;
   Quad *arg1 = (Quad *) 0 ;
@@ -3969,206 +4120,6 @@ fail:
 }
 
 
-static int _wrap_Quad_width_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Quad *arg1 = (Quad *) 0 ;
-  int arg2 ;
-  
-  SWIG_check_num_args("Quad::width",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::width",1,"Quad *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quad::width",2,"int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
-    SWIG_fail_ptr("Quad_width_set",1,SWIGTYPE_p_Quad);
-  }
-  
-  arg2 = (int)lua_tonumber(L, 2);
-  if (arg1) (arg1)->width = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Quad_width_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Quad *arg1 = (Quad *) 0 ;
-  int result;
-  
-  SWIG_check_num_args("Quad::width",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::width",1,"Quad *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
-    SWIG_fail_ptr("Quad_width_get",1,SWIGTYPE_p_Quad);
-  }
-  
-  result = (int) ((arg1)->width);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Quad_height_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Quad *arg1 = (Quad *) 0 ;
-  int arg2 ;
-  
-  SWIG_check_num_args("Quad::height",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::height",1,"Quad *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quad::height",2,"int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
-    SWIG_fail_ptr("Quad_height_set",1,SWIGTYPE_p_Quad);
-  }
-  
-  arg2 = (int)lua_tonumber(L, 2);
-  if (arg1) (arg1)->height = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Quad_height_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Quad *arg1 = (Quad *) 0 ;
-  int result;
-  
-  SWIG_check_num_args("Quad::height",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::height",1,"Quad *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
-    SWIG_fail_ptr("Quad_height_get",1,SWIGTYPE_p_Quad);
-  }
-  
-  result = (int) ((arg1)->height);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Quad_x_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Quad *arg1 = (Quad *) 0 ;
-  int arg2 ;
-  
-  SWIG_check_num_args("Quad::x",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::x",1,"Quad *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quad::x",2,"int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
-    SWIG_fail_ptr("Quad_x_set",1,SWIGTYPE_p_Quad);
-  }
-  
-  arg2 = (int)lua_tonumber(L, 2);
-  if (arg1) (arg1)->x = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Quad_x_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Quad *arg1 = (Quad *) 0 ;
-  int result;
-  
-  SWIG_check_num_args("Quad::x",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::x",1,"Quad *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
-    SWIG_fail_ptr("Quad_x_get",1,SWIGTYPE_p_Quad);
-  }
-  
-  result = (int) ((arg1)->x);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Quad_y_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Quad *arg1 = (Quad *) 0 ;
-  int arg2 ;
-  
-  SWIG_check_num_args("Quad::y",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::y",1,"Quad *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quad::y",2,"int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
-    SWIG_fail_ptr("Quad_y_set",1,SWIGTYPE_p_Quad);
-  }
-  
-  arg2 = (int)lua_tonumber(L, 2);
-  if (arg1) (arg1)->y = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Quad_y_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Quad *arg1 = (Quad *) 0 ;
-  int result;
-  
-  SWIG_check_num_args("Quad::y",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quad::y",1,"Quad *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quad,0))){
-    SWIG_fail_ptr("Quad_y_get",1,SWIGTYPE_p_Quad);
-  }
-  
-  result = (int) ((arg1)->y);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_new_Quad(lua_State* L) {
   int SWIG_arg = 0;
   Quad *result = 0 ;
@@ -4200,11 +4151,10 @@ static int _proxy__wrap_new_Quad(lua_State *L) {
 }
 static swig_lua_attribute swig_Quad_attributes[] = {
     { "texture_id", _wrap_Quad_texture_id_get, _wrap_Quad_texture_id_set },
+    { "index", _wrap_Quad_index_get, _wrap_Quad_index_set },
+    { "rows", _wrap_Quad_rows_get, _wrap_Quad_rows_set },
+    { "columns", _wrap_Quad_columns_get, _wrap_Quad_columns_set },
     { "text", _wrap_Quad_text_get, _wrap_Quad_text_set },
-    { "width", _wrap_Quad_width_get, _wrap_Quad_width_set },
-    { "height", _wrap_Quad_height_get, _wrap_Quad_height_set },
-    { "x", _wrap_Quad_x_get, _wrap_Quad_x_set },
-    { "y", _wrap_Quad_y_get, _wrap_Quad_y_set },
     {0,0,0}
 };
 static swig_lua_method swig_Quad_methods[]= {
@@ -4239,21 +4189,21 @@ static swig_lua_class *swig_Quad_bases[] = {0};
 static const char *swig_Quad_base_names[] = {0};
 static swig_lua_class _wrap_class_Quad = { "Quad", "Quad", &SWIGTYPE_p_Quad,_proxy__wrap_new_Quad, swig_delete_Quad, swig_Quad_methods, swig_Quad_attributes, &swig_Quad_Sf_SwigStatic, swig_Quad_meta, swig_Quad_bases, swig_Quad_base_names };
 
-static int _wrap_Input_x_axis_set(lua_State* L) {
+static int _wrap_Input_left_trigger_set(lua_State* L) {
   int SWIG_arg = 0;
   Input *arg1 = (Input *) 0 ;
   float arg2 ;
   
-  SWIG_check_num_args("Input::x_axis",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::x_axis",1,"Input *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::x_axis",2,"float");
+  SWIG_check_num_args("Input::left_trigger",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_trigger",1,"Input *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::left_trigger",2,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
-    SWIG_fail_ptr("Input_x_axis_set",1,SWIGTYPE_p_Input);
+    SWIG_fail_ptr("Input_left_trigger_set",1,SWIGTYPE_p_Input);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
-  if (arg1) (arg1)->x_axis = arg2;
+  if (arg1) (arg1)->left_trigger = arg2;
   
   return SWIG_arg;
   
@@ -4265,19 +4215,19 @@ fail:
 }
 
 
-static int _wrap_Input_x_axis_get(lua_State* L) {
+static int _wrap_Input_left_trigger_get(lua_State* L) {
   int SWIG_arg = 0;
   Input *arg1 = (Input *) 0 ;
   float result;
   
-  SWIG_check_num_args("Input::x_axis",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::x_axis",1,"Input *");
+  SWIG_check_num_args("Input::left_trigger",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_trigger",1,"Input *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
-    SWIG_fail_ptr("Input_x_axis_get",1,SWIGTYPE_p_Input);
+    SWIG_fail_ptr("Input_left_trigger_get",1,SWIGTYPE_p_Input);
   }
   
-  result = (float) ((arg1)->x_axis);
+  result = (float) ((arg1)->left_trigger);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -4289,21 +4239,21 @@ fail:
 }
 
 
-static int _wrap_Input_y_axis_set(lua_State* L) {
+static int _wrap_Input_right_trigger_set(lua_State* L) {
   int SWIG_arg = 0;
   Input *arg1 = (Input *) 0 ;
   float arg2 ;
   
-  SWIG_check_num_args("Input::y_axis",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::y_axis",1,"Input *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::y_axis",2,"float");
+  SWIG_check_num_args("Input::right_trigger",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_trigger",1,"Input *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::right_trigger",2,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
-    SWIG_fail_ptr("Input_y_axis_set",1,SWIGTYPE_p_Input);
+    SWIG_fail_ptr("Input_right_trigger_set",1,SWIGTYPE_p_Input);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
-  if (arg1) (arg1)->y_axis = arg2;
+  if (arg1) (arg1)->right_trigger = arg2;
   
   return SWIG_arg;
   
@@ -4315,19 +4265,19 @@ fail:
 }
 
 
-static int _wrap_Input_y_axis_get(lua_State* L) {
+static int _wrap_Input_right_trigger_get(lua_State* L) {
   int SWIG_arg = 0;
   Input *arg1 = (Input *) 0 ;
   float result;
   
-  SWIG_check_num_args("Input::y_axis",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::y_axis",1,"Input *");
+  SWIG_check_num_args("Input::right_trigger",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_trigger",1,"Input *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
-    SWIG_fail_ptr("Input_y_axis_get",1,SWIGTYPE_p_Input);
+    SWIG_fail_ptr("Input_right_trigger_get",1,SWIGTYPE_p_Input);
   }
   
-  result = (float) ((arg1)->y_axis);
+  result = (float) ((arg1)->right_trigger);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -4339,21 +4289,21 @@ fail:
 }
 
 
-static int _wrap_Input_roll_set(lua_State* L) {
+static int _wrap_Input_left_x_axis_set(lua_State* L) {
   int SWIG_arg = 0;
   Input *arg1 = (Input *) 0 ;
   float arg2 ;
   
-  SWIG_check_num_args("Input::roll",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::roll",1,"Input *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::roll",2,"float");
+  SWIG_check_num_args("Input::left_x_axis",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_x_axis",1,"Input *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::left_x_axis",2,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
-    SWIG_fail_ptr("Input_roll_set",1,SWIGTYPE_p_Input);
+    SWIG_fail_ptr("Input_left_x_axis_set",1,SWIGTYPE_p_Input);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
-  if (arg1) (arg1)->roll = arg2;
+  if (arg1) (arg1)->left_x_axis = arg2;
   
   return SWIG_arg;
   
@@ -4365,19 +4315,19 @@ fail:
 }
 
 
-static int _wrap_Input_roll_get(lua_State* L) {
+static int _wrap_Input_left_x_axis_get(lua_State* L) {
   int SWIG_arg = 0;
   Input *arg1 = (Input *) 0 ;
   float result;
   
-  SWIG_check_num_args("Input::roll",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::roll",1,"Input *");
+  SWIG_check_num_args("Input::left_x_axis",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_x_axis",1,"Input *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
-    SWIG_fail_ptr("Input_roll_get",1,SWIGTYPE_p_Input);
+    SWIG_fail_ptr("Input_left_x_axis_get",1,SWIGTYPE_p_Input);
   }
   
-  result = (float) ((arg1)->roll);
+  result = (float) ((arg1)->left_x_axis);
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
@@ -4389,21 +4339,171 @@ fail:
 }
 
 
-static int _wrap_Input_fire_set(lua_State* L) {
+static int _wrap_Input_left_y_axis_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Input::left_y_axis",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_y_axis",1,"Input *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::left_y_axis",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_left_y_axis_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->left_y_axis = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_left_y_axis_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Input::left_y_axis",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_y_axis",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_left_y_axis_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (float) ((arg1)->left_y_axis);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_x_axis_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Input::right_x_axis",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_x_axis",1,"Input *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::right_x_axis",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_x_axis_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->right_x_axis = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_x_axis_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Input::right_x_axis",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_x_axis",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_x_axis_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (float) ((arg1)->right_x_axis);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_y_axis_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Input::right_y_axis",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_y_axis",1,"Input *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Input::right_y_axis",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_y_axis_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->right_y_axis = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_y_axis_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Input::right_y_axis",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_y_axis",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_y_axis_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (float) ((arg1)->right_y_axis);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_up_set(lua_State* L) {
   int SWIG_arg = 0;
   Input *arg1 = (Input *) 0 ;
   bool arg2 ;
   
-  SWIG_check_num_args("Input::fire",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::fire",1,"Input *");
-  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::fire",2,"bool");
+  SWIG_check_num_args("Input::up",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::up",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::up",2,"bool");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
-    SWIG_fail_ptr("Input_fire_set",1,SWIGTYPE_p_Input);
+    SWIG_fail_ptr("Input_up_set",1,SWIGTYPE_p_Input);
   }
   
   arg2 = (lua_toboolean(L, 2)!=0);
-  if (arg1) (arg1)->fire = arg2;
+  if (arg1) (arg1)->up = arg2;
   
   return SWIG_arg;
   
@@ -4415,19 +4515,719 @@ fail:
 }
 
 
-static int _wrap_Input_fire_get(lua_State* L) {
+static int _wrap_Input_up_get(lua_State* L) {
   int SWIG_arg = 0;
   Input *arg1 = (Input *) 0 ;
   bool result;
   
-  SWIG_check_num_args("Input::fire",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::fire",1,"Input *");
+  SWIG_check_num_args("Input::up",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::up",1,"Input *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
-    SWIG_fail_ptr("Input_fire_get",1,SWIGTYPE_p_Input);
+    SWIG_fail_ptr("Input_up_get",1,SWIGTYPE_p_Input);
   }
   
-  result = (bool) ((arg1)->fire);
+  result = (bool) ((arg1)->up);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_down_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::down",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::down",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::down",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_down_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->down = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_down_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::down",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::down",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_down_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->down);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_left_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::left",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::left",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_left_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->left = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_left_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::left",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_left_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->left);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::right",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::right",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->right = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::right",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->right);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_back_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::back",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::back",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::back",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_back_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->back = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_back_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::back",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::back",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_back_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->back);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_start_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::start",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::start",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::start",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_start_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->start = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_start_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::start",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::start",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_start_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->start);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_xbox_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::xbox",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::xbox",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::xbox",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_xbox_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->xbox = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_xbox_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::xbox",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::xbox",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_xbox_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->xbox);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_y_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::y",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::y",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::y",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_y_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->y = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_y_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::y",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::y",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_y_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->y);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_x_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::x",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::x",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::x",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_x_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->x = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_x_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::x",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::x",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_x_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->x);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_b_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::b",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::b",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::b",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_b_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->b = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_b_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::b",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::b",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_b_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->b);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_a_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::a",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::a",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::a",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_a_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->a = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_a_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::a",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::a",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_a_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->a);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_left_shoulder_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::left_shoulder",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_shoulder",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::left_shoulder",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_left_shoulder_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->left_shoulder = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_left_shoulder_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::left_shoulder",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_shoulder",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_left_shoulder_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->left_shoulder);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_shoulder_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::right_shoulder",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_shoulder",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::right_shoulder",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_shoulder_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->right_shoulder = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_shoulder_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::right_shoulder",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_shoulder",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_shoulder_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->right_shoulder);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_left_joystick_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::left_joystick",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_joystick",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::left_joystick",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_left_joystick_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->left_joystick = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_left_joystick_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::left_joystick",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::left_joystick",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_left_joystick_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->left_joystick);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_joystick_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::right_joystick",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_joystick",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::right_joystick",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_joystick_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->right_joystick = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_right_joystick_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::right_joystick",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::right_joystick",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_right_joystick_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->right_joystick);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
   
@@ -4469,10 +5269,27 @@ static int _proxy__wrap_new_Input(lua_State *L) {
     return 1;
 }
 static swig_lua_attribute swig_Input_attributes[] = {
-    { "x_axis", _wrap_Input_x_axis_get, _wrap_Input_x_axis_set },
-    { "y_axis", _wrap_Input_y_axis_get, _wrap_Input_y_axis_set },
-    { "roll", _wrap_Input_roll_get, _wrap_Input_roll_set },
-    { "fire", _wrap_Input_fire_get, _wrap_Input_fire_set },
+    { "left_trigger", _wrap_Input_left_trigger_get, _wrap_Input_left_trigger_set },
+    { "right_trigger", _wrap_Input_right_trigger_get, _wrap_Input_right_trigger_set },
+    { "left_x_axis", _wrap_Input_left_x_axis_get, _wrap_Input_left_x_axis_set },
+    { "left_y_axis", _wrap_Input_left_y_axis_get, _wrap_Input_left_y_axis_set },
+    { "right_x_axis", _wrap_Input_right_x_axis_get, _wrap_Input_right_x_axis_set },
+    { "right_y_axis", _wrap_Input_right_y_axis_get, _wrap_Input_right_y_axis_set },
+    { "up", _wrap_Input_up_get, _wrap_Input_up_set },
+    { "down", _wrap_Input_down_get, _wrap_Input_down_set },
+    { "left", _wrap_Input_left_get, _wrap_Input_left_set },
+    { "right", _wrap_Input_right_get, _wrap_Input_right_set },
+    { "back", _wrap_Input_back_get, _wrap_Input_back_set },
+    { "start", _wrap_Input_start_get, _wrap_Input_start_set },
+    { "xbox", _wrap_Input_xbox_get, _wrap_Input_xbox_set },
+    { "y", _wrap_Input_y_get, _wrap_Input_y_set },
+    { "x", _wrap_Input_x_get, _wrap_Input_x_set },
+    { "b", _wrap_Input_b_get, _wrap_Input_b_set },
+    { "a", _wrap_Input_a_get, _wrap_Input_a_set },
+    { "left_shoulder", _wrap_Input_left_shoulder_get, _wrap_Input_left_shoulder_set },
+    { "right_shoulder", _wrap_Input_right_shoulder_get, _wrap_Input_right_shoulder_set },
+    { "left_joystick", _wrap_Input_left_joystick_get, _wrap_Input_left_joystick_set },
+    { "right_joystick", _wrap_Input_right_joystick_get, _wrap_Input_right_joystick_set },
     {0,0,0}
 };
 static swig_lua_method swig_Input_methods[]= {
@@ -4723,6 +5540,156 @@ fail:
 }
 
 
+static int _wrap_Sprite_index_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Sprite *arg1 = (Sprite *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Sprite::index",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Sprite::index",1,"Sprite *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Sprite::index",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Sprite,0))){
+    SWIG_fail_ptr("Sprite_index_set",1,SWIGTYPE_p_Sprite);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->index = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Sprite_index_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Sprite *arg1 = (Sprite *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Sprite::index",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Sprite::index",1,"Sprite *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Sprite,0))){
+    SWIG_fail_ptr("Sprite_index_get",1,SWIGTYPE_p_Sprite);
+  }
+  
+  result = (int) ((arg1)->index);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Sprite_rows_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Sprite *arg1 = (Sprite *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Sprite::rows",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Sprite::rows",1,"Sprite *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Sprite::rows",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Sprite,0))){
+    SWIG_fail_ptr("Sprite_rows_set",1,SWIGTYPE_p_Sprite);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->rows = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Sprite_rows_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Sprite *arg1 = (Sprite *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Sprite::rows",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Sprite::rows",1,"Sprite *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Sprite,0))){
+    SWIG_fail_ptr("Sprite_rows_get",1,SWIGTYPE_p_Sprite);
+  }
+  
+  result = (int) ((arg1)->rows);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Sprite_columns_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Sprite *arg1 = (Sprite *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Sprite::columns",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Sprite::columns",1,"Sprite *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Sprite::columns",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Sprite,0))){
+    SWIG_fail_ptr("Sprite_columns_set",1,SWIGTYPE_p_Sprite);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->columns = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Sprite_columns_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Sprite *arg1 = (Sprite *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Sprite::columns",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Sprite::columns",1,"Sprite *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Sprite,0))){
+    SWIG_fail_ptr("Sprite_columns_get",1,SWIGTYPE_p_Sprite);
+  }
+  
+  result = (int) ((arg1)->columns);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_new_Sprite(lua_State* L) {
   int SWIG_arg = 0;
   Sprite *result = 0 ;
@@ -4754,6 +5721,9 @@ static int _proxy__wrap_new_Sprite(lua_State *L) {
 }
 static swig_lua_attribute swig_Sprite_attributes[] = {
     { "texture_id", _wrap_Sprite_texture_id_get, _wrap_Sprite_texture_id_set },
+    { "index", _wrap_Sprite_index_get, _wrap_Sprite_index_set },
+    { "rows", _wrap_Sprite_rows_get, _wrap_Sprite_rows_set },
+    { "columns", _wrap_Sprite_columns_get, _wrap_Sprite_columns_set },
     {0,0,0}
 };
 static swig_lua_method swig_Sprite_methods[]= {
@@ -4841,24 +5811,26 @@ fail:
 static int _wrap_Entity_transform_set(lua_State* L) {
   int SWIG_arg = 0;
   struct Entity *arg1 = (struct Entity *) 0 ;
-  mat4_t arg2 ;
-  mat4_t *argp2 ;
+  float *arg2 ;
   
   SWIG_check_num_args("Entity::transform",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Entity::transform",1,"struct Entity *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Entity::transform",2,"mat4_t");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Entity::transform",2,"float [16]");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
     SWIG_fail_ptr("Entity_transform_set",1,SWIGTYPE_p_Entity);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_mat4_t,0))){
-    SWIG_fail_ptr("Entity_transform_set",2,SWIGTYPE_p_mat4_t);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("Entity_transform_set",2,SWIGTYPE_p_float);
   }
-  arg2 = *argp2;
   
-  if (arg1) (arg1)->transform = arg2;
+  {
+    size_t ii;
+    float *b = (float *) arg1->transform;
+    for (ii = 0; ii < (size_t)16; ii++) b[ii] = *((float *) arg2 + ii);
+  }
   
   return SWIG_arg;
   
@@ -4873,7 +5845,7 @@ fail:
 static int _wrap_Entity_transform_get(lua_State* L) {
   int SWIG_arg = 0;
   struct Entity *arg1 = (struct Entity *) 0 ;
-  mat4_t result;
+  float *result = 0 ;
   
   SWIG_check_num_args("Entity::transform",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Entity::transform",1,"struct Entity *");
@@ -4882,13 +5854,8 @@ static int _wrap_Entity_transform_get(lua_State* L) {
     SWIG_fail_ptr("Entity_transform_get",1,SWIGTYPE_p_Entity);
   }
   
-  result =  ((arg1)->transform);
-  {
-    mat4_t * resultptr;
-    resultptr = (mat4_t *) malloc(sizeof(mat4_t));
-    memmove(resultptr, &result, sizeof(mat4_t));
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_mat4_t,1); SWIG_arg++;
-  }
+  result = (float *)(float *) ((arg1)->transform);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_float,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -4902,24 +5869,26 @@ fail:
 static int _wrap_Entity_inverse_world_set(lua_State* L) {
   int SWIG_arg = 0;
   struct Entity *arg1 = (struct Entity *) 0 ;
-  mat4_t arg2 ;
-  mat4_t *argp2 ;
+  float *arg2 ;
   
   SWIG_check_num_args("Entity::inverse_world",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Entity::inverse_world",1,"struct Entity *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Entity::inverse_world",2,"mat4_t");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Entity::inverse_world",2,"float [16]");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
     SWIG_fail_ptr("Entity_inverse_world_set",1,SWIGTYPE_p_Entity);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_mat4_t,0))){
-    SWIG_fail_ptr("Entity_inverse_world_set",2,SWIGTYPE_p_mat4_t);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_float,0))){
+    SWIG_fail_ptr("Entity_inverse_world_set",2,SWIGTYPE_p_float);
   }
-  arg2 = *argp2;
   
-  if (arg1) (arg1)->inverse_world = arg2;
+  {
+    size_t ii;
+    float *b = (float *) arg1->inverse_world;
+    for (ii = 0; ii < (size_t)16; ii++) b[ii] = *((float *) arg2 + ii);
+  }
   
   return SWIG_arg;
   
@@ -4934,7 +5903,7 @@ fail:
 static int _wrap_Entity_inverse_world_get(lua_State* L) {
   int SWIG_arg = 0;
   struct Entity *arg1 = (struct Entity *) 0 ;
-  mat4_t result;
+  float *result = 0 ;
   
   SWIG_check_num_args("Entity::inverse_world",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Entity::inverse_world",1,"struct Entity *");
@@ -4943,13 +5912,8 @@ static int _wrap_Entity_inverse_world_get(lua_State* L) {
     SWIG_fail_ptr("Entity_inverse_world_get",1,SWIGTYPE_p_Entity);
   }
   
-  result =  ((arg1)->inverse_world);
-  {
-    mat4_t * resultptr;
-    resultptr = (mat4_t *) malloc(sizeof(mat4_t));
-    memmove(resultptr, &result, sizeof(mat4_t));
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_mat4_t,1); SWIG_arg++;
-  }
+  result = (float *)(float *) ((arg1)->inverse_world);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_float,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -5281,6 +6245,223 @@ static swig_lua_class *swig_Entity_value_bases[] = {0};
 static const char *swig_Entity_value_base_names[] = {0};
 static swig_lua_class _wrap_class_Entity_value = { "Entity_value", "Entity_value", &SWIGTYPE_p_Entity_value,_proxy__wrap_new_Entity_value, swig_delete_Entity_value, swig_Entity_value_methods, swig_Entity_value_attributes, &swig_Entity_value_Sf_SwigStatic, swig_Entity_value_meta, swig_Entity_value_bases, swig_Entity_value_base_names };
 
+static int _wrap_Vec3_x_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Vec3::x",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::x",1,"struct Vec3 *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::x",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_x_set",1,SWIGTYPE_p_Vec3);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->x = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_x_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Vec3::x",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::x",1,"struct Vec3 *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_x_get",1,SWIGTYPE_p_Vec3);
+  }
+  
+  result = (float) ((arg1)->x);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_y_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Vec3::y",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::y",1,"struct Vec3 *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::y",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_y_set",1,SWIGTYPE_p_Vec3);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->y = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_y_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Vec3::y",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::y",1,"struct Vec3 *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_y_get",1,SWIGTYPE_p_Vec3);
+  }
+  
+  result = (float) ((arg1)->y);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_z_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Vec3::z",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::z",1,"struct Vec3 *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::z",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_z_set",1,SWIGTYPE_p_Vec3);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->z = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_z_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Vec3::z",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::z",1,"struct Vec3 *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_z_get",1,SWIGTYPE_p_Vec3);
+  }
+  
+  result = (float) ((arg1)->z);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Vec3(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *result = 0 ;
+  
+  SWIG_check_num_args("Vec3::Vec3",0,0)
+  result = (struct Vec3 *)calloc(1, sizeof(struct Vec3));
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Vec3,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Vec3(void *obj) {
+struct Vec3 *arg1 = (struct Vec3 *) obj;
+free((char *) arg1);
+}
+static int _proxy__wrap_new_Vec3(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_Vec3);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_Vec3_attributes[] = {
+    { "x", _wrap_Vec3_x_get, _wrap_Vec3_x_set },
+    { "y", _wrap_Vec3_y_get, _wrap_Vec3_y_set },
+    { "z", _wrap_Vec3_z_get, _wrap_Vec3_z_set },
+    {0,0,0}
+};
+static swig_lua_method swig_Vec3_methods[]= {
+    {0,0}
+};
+static swig_lua_method swig_Vec3_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_Vec3_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_Vec3_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_Vec3_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_Vec3_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_Vec3_Sf_SwigStatic = {
+    "Vec3",
+    swig_Vec3_Sf_SwigStatic_methods,
+    swig_Vec3_Sf_SwigStatic_attributes,
+    swig_Vec3_Sf_SwigStatic_constants,
+    swig_Vec3_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_Vec3_bases[] = {0};
+static const char *swig_Vec3_base_names[] = {0};
+static swig_lua_class _wrap_class_Vec3 = { "Vec3", "Vec3", &SWIGTYPE_p_Vec3,_proxy__wrap_new_Vec3, swig_delete_Vec3, swig_Vec3_methods, swig_Vec3_attributes, &swig_Vec3_Sf_SwigStatic, swig_Vec3_meta, swig_Vec3_bases, swig_Vec3_base_names };
+
 static int _wrap_new_mesh_entity(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
@@ -5307,30 +6488,21 @@ fail:
 }
 
 
-static int _wrap_create_mesh_entity(lua_State* L) {
+static int _wrap_new_sprite_entity(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
   char *arg2 = (char *) 0 ;
-  mat4_t arg3 ;
-  mat4_t *argp3 ;
   
-  SWIG_check_num_args("create_mesh_entity",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("create_mesh_entity",1,"Entity *");
-  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("create_mesh_entity",2,"char const *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("create_mesh_entity",3,"mat4_t");
+  SWIG_check_num_args("new_sprite_entity",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("new_sprite_entity",1,"Entity *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("new_sprite_entity",2,"char const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
-    SWIG_fail_ptr("create_mesh_entity",1,SWIGTYPE_p_Entity);
+    SWIG_fail_ptr("new_sprite_entity",1,SWIGTYPE_p_Entity);
   }
   
   arg2 = (char *)lua_tostring(L, 2);
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_mat4_t,0))){
-    SWIG_fail_ptr("create_mesh_entity",3,SWIGTYPE_p_mat4_t);
-  }
-  arg3 = *argp3;
-  
-  create_mesh_entity(arg1,(char const *)arg2,arg3);
+  new_sprite_entity(arg1,(char const *)arg2);
   
   return SWIG_arg;
   
@@ -5342,30 +6514,73 @@ fail:
 }
 
 
-static int _wrap_create_sprite_entity(lua_State* L) {
+static int _wrap_new_quad_entity(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
   char *arg2 = (char *) 0 ;
-  mat4_t arg3 ;
-  mat4_t *argp3 ;
   
-  SWIG_check_num_args("create_sprite_entity",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("create_sprite_entity",1,"Entity *");
-  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("create_sprite_entity",2,"char const *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("create_sprite_entity",3,"mat4_t");
+  SWIG_check_num_args("new_quad_entity",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("new_quad_entity",1,"Entity *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("new_quad_entity",2,"char const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
-    SWIG_fail_ptr("create_sprite_entity",1,SWIGTYPE_p_Entity);
+    SWIG_fail_ptr("new_quad_entity",1,SWIGTYPE_p_Entity);
   }
   
   arg2 = (char *)lua_tostring(L, 2);
+  new_quad_entity(arg1,(char const *)arg2);
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&argp3,SWIGTYPE_p_mat4_t,0))){
-    SWIG_fail_ptr("create_sprite_entity",3,SWIGTYPE_p_mat4_t);
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_set_quad_index(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("set_quad_index",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("set_quad_index",1,"Entity *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("set_quad_index",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("set_quad_index",1,SWIGTYPE_p_Entity);
   }
-  arg3 = *argp3;
   
-  create_sprite_entity(arg1,(char const *)arg2,arg3);
+  arg2 = (int)lua_tonumber(L, 2);
+  set_quad_index(arg1,arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_text_quad_entity(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  SWIG_check_num_args("new_text_quad_entity",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("new_text_quad_entity",1,"Entity *");
+  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("new_text_quad_entity",2,"char const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("new_text_quad_entity",1,SWIGTYPE_p_Entity);
+  }
+  
+  arg2 = (char *)lua_tostring(L, 2);
+  new_text_quad_entity(arg1,(char const *)arg2);
   
   return SWIG_arg;
   
@@ -5446,18 +6661,44 @@ fail:
 }
 
 
-static int _wrap_render_quad(lua_State* L) {
+static int _wrap_render_sprite(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
   
-  SWIG_check_num_args("render_quad",1,1)
+  SWIG_check_num_args("render_sprite",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("render_sprite",1,"Entity const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("render_sprite",1,SWIGTYPE_p_Entity);
+  }
+  
+  render_sprite((struct Entity const *)arg1);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_render_quad(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("render_quad",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("render_quad",1,"Entity const *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("render_quad",2,"bool");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
     SWIG_fail_ptr("render_quad",1,SWIGTYPE_p_Entity);
   }
   
-  render_quad((struct Entity const *)arg1);
+  arg2 = (lua_toboolean(L, 2)!=0);
+  render_quad((struct Entity const *)arg1,arg2);
   
   return SWIG_arg;
   
@@ -5501,6 +6742,90 @@ fail:
 }
 
 
+static int _wrap_get_location(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  Vec3 result;
+  
+  SWIG_check_num_args("get_location",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("get_location",1,"Entity *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("get_location",1,SWIGTYPE_p_Entity);
+  }
+  
+  result = get_location(arg1);
+  {
+    Vec3 * resultptr;
+    resultptr = (Vec3 *) malloc(sizeof(Vec3));
+    memmove(resultptr, &result, sizeof(Vec3));
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vec3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_identity(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  
+  SWIG_check_num_args("identity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("identity",1,"Entity *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("identity",1,SWIGTYPE_p_Entity);
+  }
+  
+  identity(arg1);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_set_translation_world(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  SWIG_check_num_args("set_translation_world",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("set_translation_world",1,"Entity *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("set_translation_world",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("set_translation_world",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("set_translation_world",4,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("set_translation_world",1,SWIGTYPE_p_Entity);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  set_translation_world(arg1,arg2,arg3,arg4);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_translate(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
@@ -5522,6 +6847,74 @@ static int _wrap_translate(lua_State* L) {
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   translate(arg1,arg2,arg3,arg4);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_transform(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  Vec3 result;
+  
+  SWIG_check_num_args("transform",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("transform",1,"Entity *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("transform",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("transform",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("transform",4,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("transform",1,SWIGTYPE_p_Entity);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  result = transform(arg1,arg2,arg3,arg4);
+  {
+    Vec3 * resultptr;
+    resultptr = (Vec3 *) malloc(sizeof(Vec3));
+    memmove(resultptr, &result, sizeof(Vec3));
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vec3,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_set_transform(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  Entity *arg2 = (Entity *) 0 ;
+  
+  SWIG_check_num_args("set_transform",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("set_transform",1,"Entity *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("set_transform",2,"Entity *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("set_transform",1,SWIGTYPE_p_Entity);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("set_transform",2,SWIGTYPE_p_Entity);
+  }
+  
+  set_transform(arg1,arg2);
   
   return SWIG_arg;
   
@@ -5653,6 +7046,59 @@ fail:
 }
 
 
+static int _wrap_get_input(lua_State* L) {
+  int SWIG_arg = 0;
+  Input result;
+  
+  SWIG_check_num_args("get_input",0,0)
+  result = get_input();
+  {
+    Input * resultptr;
+    resultptr = (Input *) malloc(sizeof(Input));
+    memmove(resultptr, &result, sizeof(Input));
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Input,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_collide(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  Entity *arg2 = (Entity *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("collide",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("collide",1,"Entity *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("collide",2,"Entity *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("collide",1,SWIGTYPE_p_Entity);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("collide",2,SWIGTYPE_p_Entity);
+  }
+  
+  result = (bool)collide(arg1,arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static swig_lua_attribute swig_SwigModule_attributes[] = {
     {0,0,0}
 };
@@ -5666,18 +7112,28 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
 };
 static swig_lua_method swig_SwigModule_methods[]= {
     { "new_mesh_entity", _wrap_new_mesh_entity},
-    { "create_mesh_entity", _wrap_create_mesh_entity},
-    { "create_sprite_entity", _wrap_create_sprite_entity},
+    { "new_sprite_entity", _wrap_new_sprite_entity},
+    { "new_quad_entity", _wrap_new_quad_entity},
+    { "set_quad_index", _wrap_set_quad_index},
+    { "new_text_quad_entity", _wrap_new_text_quad_entity},
     { "render", _wrap_render},
     { "render_points", _wrap_render_points},
     { "render_shadow", _wrap_render_shadow},
+    { "render_sprite", _wrap_render_sprite},
     { "render_quad", _wrap_render_quad},
     { "move_to", _wrap_move_to},
+    { "get_location", _wrap_get_location},
+    { "identity", _wrap_identity},
+    { "set_translation_world", _wrap_set_translation_world},
     { "translate", _wrap_translate},
+    { "transform", _wrap_transform},
+    { "set_transform", _wrap_set_transform},
     { "scale", _wrap_scale},
     { "rotate", _wrap_rotate},
     { "init_camera", _wrap_init_camera},
     { "look_at", _wrap_look_at},
+    { "get_input", _wrap_get_input},
+    { "collide", _wrap_collide},
     {0,0}
 };
 static swig_lua_class* swig_SwigModule_classes[]= {
@@ -5689,6 +7145,7 @@ static swig_lua_class* swig_SwigModule_classes[]= {
 &_wrap_class_Sprite,
 &_wrap_class_Entity,
 &_wrap_class_Entity_value,
+&_wrap_class_Vec3,
     0
 };
 static swig_lua_namespace* swig_SwigModule_namespaces[] = {
@@ -5720,8 +7177,9 @@ static swig_type_info _swigt__p_Quad = {"_p_Quad", "Quad *", 0, 0, (void*)&_wrap
 static swig_type_info _swigt__p_Sprite = {"_p_Sprite", "Sprite *", 0, 0, (void*)&_wrap_class_Sprite, 0};
 static swig_type_info _swigt__p_Texture = {"_p_Texture", "Texture *", 0, 0, (void*)&_wrap_class_Texture, 0};
 static swig_type_info _swigt__p_Type = {"_p_Type", "enum Type *|Type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Vec3 = {"_p_Vec3", "struct Vec3 *|Vec3 *", 0, 0, (void*)&_wrap_class_Vec3, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_mat4_t = {"_p_mat4_t", "mat4_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_float = {"_p_float", "float *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Entity,
@@ -5735,8 +7193,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Sprite,
   &_swigt__p_Texture,
   &_swigt__p_Type,
+  &_swigt__p_Vec3,
   &_swigt__p_char,
-  &_swigt__p_mat4_t,
+  &_swigt__p_float,
 };
 
 static swig_cast_info _swigc__p_Entity[] = {  {&_swigt__p_Entity, 0, 0, 0},{0, 0, 0, 0}};
@@ -5750,8 +7209,9 @@ static swig_cast_info _swigc__p_Quad[] = {  {&_swigt__p_Quad, 0, 0, 0},{0, 0, 0,
 static swig_cast_info _swigc__p_Sprite[] = {  {&_swigt__p_Sprite, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Texture[] = {  {&_swigt__p_Texture, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Vec3[] = {  {&_swigt__p_Vec3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_mat4_t[] = {  {&_swigt__p_mat4_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Entity,
@@ -5765,8 +7225,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Sprite,
   _swigc__p_Texture,
   _swigc__p_Type,
+  _swigc__p_Vec3,
   _swigc__p_char,
-  _swigc__p_mat4_t,
+  _swigc__p_float,
 };
 
 

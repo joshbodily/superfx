@@ -39,10 +39,11 @@ function Projectile:render()
 end
 
 function Projectile:explode()
-  explosion = Explosion({sprite="explosion.png", location={1, 1, 1}, scale={1, 1, 1}})
-  --SuperFX.set_transform(self.entity, explosion.entity)
-  SuperFX.move_to(explosion.entity, self.current_position.x, self.current_position.y, self.current_position.z)
-  add_object(explosion, "explosion")
+  if self.current_position then
+    explosion = Explosion({sprite="explosion.png", location={1, 1, 1}, scale={1, 1, 1}, rows=1, columns=12})
+    SuperFX.move_to(explosion.entity, self.current_position.x, self.current_position.y, self.current_position.z)
+    add_object(explosion, "explosion")
+  end
   remove_object(self)
 end
 

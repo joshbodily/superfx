@@ -2,6 +2,24 @@
 
 #include "superfx.h"
 
+typedef struct Quat {
+  float x;
+  float y;
+  float z;
+  float w;
+} Quat;
+
+typedef struct Vec3 {
+  float x;
+  float y;
+  float z;
+} Vec3;
+
+typedef struct {
+  int width;
+  int height;
+} Size;
+
 typedef struct {
   GLuint verticesID;
   GLuint indicesID;
@@ -29,7 +47,7 @@ typedef struct {
   int rows;
   int columns;
   char* text;
-} Quad; 
+} Quad;
 
 typedef struct {
   float left_trigger;

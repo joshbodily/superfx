@@ -1,20 +1,32 @@
 #include "input.h"
 
-#define JOYSTICK_DEAD_ZONE 8000
+#define JOYSTICK_DEAD_ZONE 5000
+
+void init_input() {
+  g_input.left_trigger = -1.0f;
+  g_input.right_trigger = -1.0f;
+}
 
 void process_joystick_input(SDL_Event* event) {
+  /*g_input.left_x_axis = 0.0f;
+  g_input.left_y_axis = 0.0f;
+  g_input.right_x_axis = 0.0f;
+  g_input.right_y_axis = 0.0f;*/
+
   if (event->type == SDL_JOYAXISMOTION) {
     //fprintf(stderr, "Axis %d\n", event->jaxis.axis);
     // Left Joystick
     if (event->jaxis.axis == 0) {
       if (abs(event->jaxis.value) > JOYSTICK_DEAD_ZONE) {
-        g_input.left_x_axis = event->jaxis.value / 32767.0f;
+        float val = event->jaxis.value / 32767.0f;
+        g_input.left_x_axis = val * val * val;
       } else {
         g_input.left_x_axis = 0.0f;
       }
     } else if (event->jaxis.axis == 1) {
       if (abs(event->jaxis.value) > JOYSTICK_DEAD_ZONE) {
-        g_input.left_y_axis = event->jaxis.value / 32767.0f;
+        float val = event->jaxis.value / 32767.0f;
+        g_input.left_y_axis = val * val * val;
       } else {
         g_input.left_y_axis = 0.0f;
       }

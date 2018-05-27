@@ -2659,14 +2659,16 @@ SWIG_Lua_dostring(lua_State *L, const char *str) {
 #define SWIGTYPE_p_Mesh swig_types[5]
 #define SWIGTYPE_p_Model swig_types[6]
 #define SWIGTYPE_p_Quad swig_types[7]
-#define SWIGTYPE_p_Sprite swig_types[8]
-#define SWIGTYPE_p_Texture swig_types[9]
-#define SWIGTYPE_p_Type swig_types[10]
-#define SWIGTYPE_p_Vec3 swig_types[11]
-#define SWIGTYPE_p_char swig_types[12]
-#define SWIGTYPE_p_float swig_types[13]
-static swig_type_info *swig_types[15];
-static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
+#define SWIGTYPE_p_Quat swig_types[8]
+#define SWIGTYPE_p_Size swig_types[9]
+#define SWIGTYPE_p_Sprite swig_types[10]
+#define SWIGTYPE_p_Texture swig_types[11]
+#define SWIGTYPE_p_Type swig_types[12]
+#define SWIGTYPE_p_Vec3 swig_types[13]
+#define SWIGTYPE_p_char swig_types[14]
+#define SWIGTYPE_p_float swig_types[15]
+static swig_type_info *swig_types[17];
+static swig_module_info swig_module = {swig_types, 16, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2699,6 +2701,657 @@ typedef union {
 #ifdef __cplusplus
 extern "C" {
 #endif
+static int _wrap_Quat_x_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *arg1 = (struct Quat *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Quat::x",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quat::x",1,"struct Quat *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quat::x",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quat,0))){
+    SWIG_fail_ptr("Quat_x_set",1,SWIGTYPE_p_Quat);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->x = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quat_x_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *arg1 = (struct Quat *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Quat::x",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quat::x",1,"struct Quat *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quat,0))){
+    SWIG_fail_ptr("Quat_x_get",1,SWIGTYPE_p_Quat);
+  }
+  
+  result = (float) ((arg1)->x);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quat_y_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *arg1 = (struct Quat *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Quat::y",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quat::y",1,"struct Quat *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quat::y",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quat,0))){
+    SWIG_fail_ptr("Quat_y_set",1,SWIGTYPE_p_Quat);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->y = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quat_y_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *arg1 = (struct Quat *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Quat::y",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quat::y",1,"struct Quat *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quat,0))){
+    SWIG_fail_ptr("Quat_y_get",1,SWIGTYPE_p_Quat);
+  }
+  
+  result = (float) ((arg1)->y);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quat_z_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *arg1 = (struct Quat *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Quat::z",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quat::z",1,"struct Quat *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quat::z",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quat,0))){
+    SWIG_fail_ptr("Quat_z_set",1,SWIGTYPE_p_Quat);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->z = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quat_z_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *arg1 = (struct Quat *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Quat::z",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quat::z",1,"struct Quat *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quat,0))){
+    SWIG_fail_ptr("Quat_z_get",1,SWIGTYPE_p_Quat);
+  }
+  
+  result = (float) ((arg1)->z);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quat_w_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *arg1 = (struct Quat *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Quat::w",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quat::w",1,"struct Quat *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Quat::w",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quat,0))){
+    SWIG_fail_ptr("Quat_w_set",1,SWIGTYPE_p_Quat);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->w = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Quat_w_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *arg1 = (struct Quat *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Quat::w",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Quat::w",1,"struct Quat *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Quat,0))){
+    SWIG_fail_ptr("Quat_w_get",1,SWIGTYPE_p_Quat);
+  }
+  
+  result = (float) ((arg1)->w);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Quat(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Quat *result = 0 ;
+  
+  SWIG_check_num_args("Quat::Quat",0,0)
+  result = (struct Quat *)calloc(1, sizeof(struct Quat));
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Quat,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Quat(void *obj) {
+struct Quat *arg1 = (struct Quat *) obj;
+free((char *) arg1);
+}
+static int _proxy__wrap_new_Quat(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_Quat);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_Quat_attributes[] = {
+    { "x", _wrap_Quat_x_get, _wrap_Quat_x_set },
+    { "y", _wrap_Quat_y_get, _wrap_Quat_y_set },
+    { "z", _wrap_Quat_z_get, _wrap_Quat_z_set },
+    { "w", _wrap_Quat_w_get, _wrap_Quat_w_set },
+    {0,0,0}
+};
+static swig_lua_method swig_Quat_methods[]= {
+    {0,0}
+};
+static swig_lua_method swig_Quat_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_Quat_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_Quat_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_Quat_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_Quat_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_Quat_Sf_SwigStatic = {
+    "Quat",
+    swig_Quat_Sf_SwigStatic_methods,
+    swig_Quat_Sf_SwigStatic_attributes,
+    swig_Quat_Sf_SwigStatic_constants,
+    swig_Quat_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_Quat_bases[] = {0};
+static const char *swig_Quat_base_names[] = {0};
+static swig_lua_class _wrap_class_Quat = { "Quat", "Quat", &SWIGTYPE_p_Quat,_proxy__wrap_new_Quat, swig_delete_Quat, swig_Quat_methods, swig_Quat_attributes, &swig_Quat_Sf_SwigStatic, swig_Quat_meta, swig_Quat_bases, swig_Quat_base_names };
+
+static int _wrap_Vec3_x_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Vec3::x",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::x",1,"struct Vec3 *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::x",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_x_set",1,SWIGTYPE_p_Vec3);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->x = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_x_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Vec3::x",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::x",1,"struct Vec3 *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_x_get",1,SWIGTYPE_p_Vec3);
+  }
+  
+  result = (float) ((arg1)->x);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_y_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Vec3::y",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::y",1,"struct Vec3 *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::y",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_y_set",1,SWIGTYPE_p_Vec3);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->y = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_y_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Vec3::y",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::y",1,"struct Vec3 *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_y_get",1,SWIGTYPE_p_Vec3);
+  }
+  
+  result = (float) ((arg1)->y);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_z_set(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("Vec3::z",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::z",1,"struct Vec3 *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::z",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_z_set",1,SWIGTYPE_p_Vec3);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  if (arg1) (arg1)->z = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Vec3_z_get(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("Vec3::z",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::z",1,"struct Vec3 *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
+    SWIG_fail_ptr("Vec3_z_get",1,SWIGTYPE_p_Vec3);
+  }
+  
+  result = (float) ((arg1)->z);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Vec3(lua_State* L) {
+  int SWIG_arg = 0;
+  struct Vec3 *result = 0 ;
+  
+  SWIG_check_num_args("Vec3::Vec3",0,0)
+  result = (struct Vec3 *)calloc(1, sizeof(struct Vec3));
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Vec3,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Vec3(void *obj) {
+struct Vec3 *arg1 = (struct Vec3 *) obj;
+free((char *) arg1);
+}
+static int _proxy__wrap_new_Vec3(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_Vec3);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_Vec3_attributes[] = {
+    { "x", _wrap_Vec3_x_get, _wrap_Vec3_x_set },
+    { "y", _wrap_Vec3_y_get, _wrap_Vec3_y_set },
+    { "z", _wrap_Vec3_z_get, _wrap_Vec3_z_set },
+    {0,0,0}
+};
+static swig_lua_method swig_Vec3_methods[]= {
+    {0,0}
+};
+static swig_lua_method swig_Vec3_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_Vec3_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_Vec3_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_Vec3_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_Vec3_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_Vec3_Sf_SwigStatic = {
+    "Vec3",
+    swig_Vec3_Sf_SwigStatic_methods,
+    swig_Vec3_Sf_SwigStatic_attributes,
+    swig_Vec3_Sf_SwigStatic_constants,
+    swig_Vec3_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_Vec3_bases[] = {0};
+static const char *swig_Vec3_base_names[] = {0};
+static swig_lua_class _wrap_class_Vec3 = { "Vec3", "Vec3", &SWIGTYPE_p_Vec3,_proxy__wrap_new_Vec3, swig_delete_Vec3, swig_Vec3_methods, swig_Vec3_attributes, &swig_Vec3_Sf_SwigStatic, swig_Vec3_meta, swig_Vec3_bases, swig_Vec3_base_names };
+
+static int _wrap_Size_width_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Size *arg1 = (Size *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Size::width",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Size::width",1,"Size *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Size::width",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Size,0))){
+    SWIG_fail_ptr("Size_width_set",1,SWIGTYPE_p_Size);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->width = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Size_width_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Size *arg1 = (Size *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Size::width",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Size::width",1,"Size *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Size,0))){
+    SWIG_fail_ptr("Size_width_get",1,SWIGTYPE_p_Size);
+  }
+  
+  result = (int) ((arg1)->width);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Size_height_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Size *arg1 = (Size *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("Size::height",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Size::height",1,"Size *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Size::height",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Size,0))){
+    SWIG_fail_ptr("Size_height_set",1,SWIGTYPE_p_Size);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  if (arg1) (arg1)->height = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Size_height_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Size *arg1 = (Size *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("Size::height",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Size::height",1,"Size *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Size,0))){
+    SWIG_fail_ptr("Size_height_get",1,SWIGTYPE_p_Size);
+  }
+  
+  result = (int) ((arg1)->height);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Size(lua_State* L) {
+  int SWIG_arg = 0;
+  Size *result = 0 ;
+  
+  SWIG_check_num_args("Size::Size",0,0)
+  result = (Size *)calloc(1, sizeof(Size));
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Size,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Size(void *obj) {
+Size *arg1 = (Size *) obj;
+free((char *) arg1);
+}
+static int _proxy__wrap_new_Size(lua_State *L) {
+    assert(lua_istable(L,1));
+    lua_pushcfunction(L,_wrap_new_Size);
+    assert(!lua_isnil(L,-1));
+    lua_replace(L,1); /* replace our table with real constructor */
+    lua_call(L,lua_gettop(L)-1,1);
+    return 1;
+}
+static swig_lua_attribute swig_Size_attributes[] = {
+    { "width", _wrap_Size_width_get, _wrap_Size_width_set },
+    { "height", _wrap_Size_height_get, _wrap_Size_height_set },
+    {0,0,0}
+};
+static swig_lua_method swig_Size_methods[]= {
+    {0,0}
+};
+static swig_lua_method swig_Size_meta[] = {
+    {0,0}
+};
+
+static swig_lua_attribute swig_Size_Sf_SwigStatic_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_const_info swig_Size_Sf_SwigStatic_constants[]= {
+    {0,0,0,0,0,0}
+};
+static swig_lua_method swig_Size_Sf_SwigStatic_methods[]= {
+    {0,0}
+};
+static swig_lua_class* swig_Size_Sf_SwigStatic_classes[]= {
+    0
+};
+
+static swig_lua_namespace swig_Size_Sf_SwigStatic = {
+    "Size",
+    swig_Size_Sf_SwigStatic_methods,
+    swig_Size_Sf_SwigStatic_attributes,
+    swig_Size_Sf_SwigStatic_constants,
+    swig_Size_Sf_SwigStatic_classes,
+    0
+};
+static swig_lua_class *swig_Size_bases[] = {0};
+static const char *swig_Size_base_names[] = {0};
+static swig_lua_class _wrap_class_Size = { "Size", "Size", &SWIGTYPE_p_Size,_proxy__wrap_new_Size, swig_delete_Size, swig_Size_methods, swig_Size_attributes, &swig_Size_Sf_SwigStatic, swig_Size_meta, swig_Size_bases, swig_Size_base_names };
+
 static int _wrap_Mesh_verticesID_set(lua_State* L) {
   int SWIG_arg = 0;
   Mesh *arg1 = (Mesh *) 0 ;
@@ -6245,21 +6898,14 @@ static swig_lua_class *swig_Entity_value_bases[] = {0};
 static const char *swig_Entity_value_base_names[] = {0};
 static swig_lua_class _wrap_class_Entity_value = { "Entity_value", "Entity_value", &SWIGTYPE_p_Entity_value,_proxy__wrap_new_Entity_value, swig_delete_Entity_value, swig_Entity_value_methods, swig_Entity_value_attributes, &swig_Entity_value_Sf_SwigStatic, swig_Entity_value_meta, swig_Entity_value_bases, swig_Entity_value_base_names };
 
-static int _wrap_Vec3_x_set(lua_State* L) {
+static int _wrap_set_background(lua_State* L) {
   int SWIG_arg = 0;
-  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
-  float arg2 ;
+  char *arg1 = (char *) 0 ;
   
-  SWIG_check_num_args("Vec3::x",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::x",1,"struct Vec3 *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::x",2,"float");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
-    SWIG_fail_ptr("Vec3_x_set",1,SWIGTYPE_p_Vec3);
-  }
-  
-  arg2 = (float)lua_tonumber(L, 2);
-  if (arg1) (arg1)->x = arg2;
+  SWIG_check_num_args("set_background",1,1)
+  if(!SWIG_lua_isnilstring(L,1)) SWIG_fail_arg("set_background",1,"char const *");
+  arg1 = (char *)lua_tostring(L, 1);
+  set_background((char const *)arg1);
   
   return SWIG_arg;
   
@@ -6270,197 +6916,6 @@ fail:
   return SWIG_arg;
 }
 
-
-static int _wrap_Vec3_x_get(lua_State* L) {
-  int SWIG_arg = 0;
-  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
-  float result;
-  
-  SWIG_check_num_args("Vec3::x",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::x",1,"struct Vec3 *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
-    SWIG_fail_ptr("Vec3_x_get",1,SWIGTYPE_p_Vec3);
-  }
-  
-  result = (float) ((arg1)->x);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Vec3_y_set(lua_State* L) {
-  int SWIG_arg = 0;
-  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
-  float arg2 ;
-  
-  SWIG_check_num_args("Vec3::y",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::y",1,"struct Vec3 *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::y",2,"float");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
-    SWIG_fail_ptr("Vec3_y_set",1,SWIGTYPE_p_Vec3);
-  }
-  
-  arg2 = (float)lua_tonumber(L, 2);
-  if (arg1) (arg1)->y = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Vec3_y_get(lua_State* L) {
-  int SWIG_arg = 0;
-  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
-  float result;
-  
-  SWIG_check_num_args("Vec3::y",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::y",1,"struct Vec3 *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
-    SWIG_fail_ptr("Vec3_y_get",1,SWIGTYPE_p_Vec3);
-  }
-  
-  result = (float) ((arg1)->y);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Vec3_z_set(lua_State* L) {
-  int SWIG_arg = 0;
-  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
-  float arg2 ;
-  
-  SWIG_check_num_args("Vec3::z",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::z",1,"struct Vec3 *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Vec3::z",2,"float");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
-    SWIG_fail_ptr("Vec3_z_set",1,SWIGTYPE_p_Vec3);
-  }
-  
-  arg2 = (float)lua_tonumber(L, 2);
-  if (arg1) (arg1)->z = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Vec3_z_get(lua_State* L) {
-  int SWIG_arg = 0;
-  struct Vec3 *arg1 = (struct Vec3 *) 0 ;
-  float result;
-  
-  SWIG_check_num_args("Vec3::z",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Vec3::z",1,"struct Vec3 *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Vec3,0))){
-    SWIG_fail_ptr("Vec3_z_get",1,SWIGTYPE_p_Vec3);
-  }
-  
-  result = (float) ((arg1)->z);
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_Vec3(lua_State* L) {
-  int SWIG_arg = 0;
-  struct Vec3 *result = 0 ;
-  
-  SWIG_check_num_args("Vec3::Vec3",0,0)
-  result = (struct Vec3 *)calloc(1, sizeof(struct Vec3));
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Vec3,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_Vec3(void *obj) {
-struct Vec3 *arg1 = (struct Vec3 *) obj;
-free((char *) arg1);
-}
-static int _proxy__wrap_new_Vec3(lua_State *L) {
-    assert(lua_istable(L,1));
-    lua_pushcfunction(L,_wrap_new_Vec3);
-    assert(!lua_isnil(L,-1));
-    lua_replace(L,1); /* replace our table with real constructor */
-    lua_call(L,lua_gettop(L)-1,1);
-    return 1;
-}
-static swig_lua_attribute swig_Vec3_attributes[] = {
-    { "x", _wrap_Vec3_x_get, _wrap_Vec3_x_set },
-    { "y", _wrap_Vec3_y_get, _wrap_Vec3_y_set },
-    { "z", _wrap_Vec3_z_get, _wrap_Vec3_z_set },
-    {0,0,0}
-};
-static swig_lua_method swig_Vec3_methods[]= {
-    {0,0}
-};
-static swig_lua_method swig_Vec3_meta[] = {
-    {0,0}
-};
-
-static swig_lua_attribute swig_Vec3_Sf_SwigStatic_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_const_info swig_Vec3_Sf_SwigStatic_constants[]= {
-    {0,0,0,0,0,0}
-};
-static swig_lua_method swig_Vec3_Sf_SwigStatic_methods[]= {
-    {0,0}
-};
-static swig_lua_class* swig_Vec3_Sf_SwigStatic_classes[]= {
-    0
-};
-
-static swig_lua_namespace swig_Vec3_Sf_SwigStatic = {
-    "Vec3",
-    swig_Vec3_Sf_SwigStatic_methods,
-    swig_Vec3_Sf_SwigStatic_attributes,
-    swig_Vec3_Sf_SwigStatic_constants,
-    swig_Vec3_Sf_SwigStatic_classes,
-    0
-};
-static swig_lua_class *swig_Vec3_bases[] = {0};
-static const char *swig_Vec3_base_names[] = {0};
-static swig_lua_class _wrap_class_Vec3 = { "Vec3", "Vec3", &SWIGTYPE_p_Vec3,_proxy__wrap_new_Vec3, swig_delete_Vec3, swig_Vec3_methods, swig_Vec3_attributes, &swig_Vec3_Sf_SwigStatic, swig_Vec3_meta, swig_Vec3_bases, swig_Vec3_base_names };
 
 static int _wrap_new_mesh_entity(lua_State* L) {
   int SWIG_arg = 0;
@@ -6492,17 +6947,23 @@ static int _wrap_new_sprite_entity(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
   char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
   
-  SWIG_check_num_args("new_sprite_entity",2,2)
+  SWIG_check_num_args("new_sprite_entity",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("new_sprite_entity",1,"Entity *");
   if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("new_sprite_entity",2,"char const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("new_sprite_entity",3,"int");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("new_sprite_entity",4,"int");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
     SWIG_fail_ptr("new_sprite_entity",1,SWIGTYPE_p_Entity);
   }
   
   arg2 = (char *)lua_tostring(L, 2);
-  new_sprite_entity(arg1,(char const *)arg2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  new_sprite_entity(arg1,(char const *)arg2,arg3,arg4);
   
   return SWIG_arg;
   
@@ -6518,6 +6979,7 @@ static int _wrap_new_quad_entity(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
   char *arg2 = (char *) 0 ;
+  Size result;
   
   SWIG_check_num_args("new_quad_entity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("new_quad_entity",1,"Entity *");
@@ -6528,8 +6990,13 @@ static int _wrap_new_quad_entity(lua_State* L) {
   }
   
   arg2 = (char *)lua_tostring(L, 2);
-  new_quad_entity(arg1,(char const *)arg2);
-  
+  result = new_quad_entity(arg1,(char const *)arg2);
+  {
+    Size * resultptr;
+    resultptr = (Size *) malloc(sizeof(Size));
+    memmove(resultptr, &result, sizeof(Size));
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Size,1); SWIG_arg++;
+  }
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -6570,6 +7037,7 @@ static int _wrap_new_text_quad_entity(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
   char *arg2 = (char *) 0 ;
+  Size result;
   
   SWIG_check_num_args("new_text_quad_entity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("new_text_quad_entity",1,"Entity *");
@@ -6580,8 +7048,13 @@ static int _wrap_new_text_quad_entity(lua_State* L) {
   }
   
   arg2 = (char *)lua_tostring(L, 2);
-  new_text_quad_entity(arg1,(char const *)arg2);
-  
+  result = new_text_quad_entity(arg1,(char const *)arg2);
+  {
+    Size * resultptr;
+    resultptr = (Size *) malloc(sizeof(Size));
+    memmove(resultptr, &result, sizeof(Size));
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Size,1); SWIG_arg++;
+  }
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -6761,6 +7234,29 @@ static int _wrap_get_location(lua_State* L) {
     memmove(resultptr, &result, sizeof(Vec3));
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vec3,1); SWIG_arg++;
   }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_print_rotation(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  
+  SWIG_check_num_args("print_rotation",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("print_rotation",1,"Entity *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("print_rotation",1,SWIGTYPE_p_Entity);
+  }
+  
+  print_rotation(arg1);
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -6958,6 +7454,38 @@ fail:
 }
 
 
+static int _wrap_set_scale(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  SWIG_check_num_args("set_scale",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("set_scale",1,"Entity *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("set_scale",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("set_scale",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("set_scale",4,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("set_scale",1,SWIGTYPE_p_Entity);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  set_scale(arg1,arg2,arg3,arg4);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_rotate(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
@@ -6983,6 +7511,122 @@ static int _wrap_rotate(lua_State* L) {
   arg5 = (float)lua_tonumber(L, 5);
   rotate(arg1,arg2,arg3,arg4,arg5);
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_rotateQuat(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  
+  SWIG_check_num_args("rotateQuat",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("rotateQuat",1,"Entity *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("rotateQuat",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("rotateQuat",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("rotateQuat",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("rotateQuat",5,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("rotateQuat",1,SWIGTYPE_p_Entity);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  rotateQuat(arg1,arg2,arg3,arg4,arg5);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_rotateXYZ(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  SWIG_check_num_args("rotateXYZ",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("rotateXYZ",1,"Entity *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("rotateXYZ",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("rotateXYZ",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("rotateXYZ",4,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("rotateXYZ",1,SWIGTYPE_p_Entity);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  rotateXYZ(arg1,arg2,arg3,arg4);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_slerp(lua_State* L) {
+  int SWIG_arg = 0;
+  float arg1 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  float arg8 ;
+  float arg9 ;
+  Quat result;
+  
+  SWIG_check_num_args("slerp",9,9)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("slerp",1,"float");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("slerp",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("slerp",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("slerp",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("slerp",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("slerp",6,"float");
+  if(!lua_isnumber(L,7)) SWIG_fail_arg("slerp",7,"float");
+  if(!lua_isnumber(L,8)) SWIG_fail_arg("slerp",8,"float");
+  if(!lua_isnumber(L,9)) SWIG_fail_arg("slerp",9,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  arg7 = (float)lua_tonumber(L, 7);
+  arg8 = (float)lua_tonumber(L, 8);
+  arg9 = (float)lua_tonumber(L, 9);
+  result = slerp(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+  {
+    Quat * resultptr;
+    resultptr = (Quat *) malloc(sizeof(Quat));
+    memmove(resultptr, &result, sizeof(Quat));
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Quat,1); SWIG_arg++;
+  }
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7111,6 +7755,7 @@ static swig_lua_const_info swig_SwigModule_constants[]= {
     {0,0,0,0,0,0}
 };
 static swig_lua_method swig_SwigModule_methods[]= {
+    { "set_background", _wrap_set_background},
     { "new_mesh_entity", _wrap_new_mesh_entity},
     { "new_sprite_entity", _wrap_new_sprite_entity},
     { "new_quad_entity", _wrap_new_quad_entity},
@@ -7123,13 +7768,18 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "render_quad", _wrap_render_quad},
     { "move_to", _wrap_move_to},
     { "get_location", _wrap_get_location},
+    { "print_rotation", _wrap_print_rotation},
     { "identity", _wrap_identity},
     { "set_translation_world", _wrap_set_translation_world},
     { "translate", _wrap_translate},
     { "transform", _wrap_transform},
     { "set_transform", _wrap_set_transform},
     { "scale", _wrap_scale},
+    { "set_scale", _wrap_set_scale},
     { "rotate", _wrap_rotate},
+    { "rotateQuat", _wrap_rotateQuat},
+    { "rotateXYZ", _wrap_rotateXYZ},
+    { "slerp", _wrap_slerp},
     { "init_camera", _wrap_init_camera},
     { "look_at", _wrap_look_at},
     { "get_input", _wrap_get_input},
@@ -7137,6 +7787,9 @@ static swig_lua_method swig_SwigModule_methods[]= {
     {0,0}
 };
 static swig_lua_class* swig_SwigModule_classes[]= {
+&_wrap_class_Quat,
+&_wrap_class_Vec3,
+&_wrap_class_Size,
 &_wrap_class_Mesh,
 &_wrap_class_Texture,
 &_wrap_class_Quad,
@@ -7145,7 +7798,6 @@ static swig_lua_class* swig_SwigModule_classes[]= {
 &_wrap_class_Sprite,
 &_wrap_class_Entity,
 &_wrap_class_Entity_value,
-&_wrap_class_Vec3,
     0
 };
 static swig_lua_namespace* swig_SwigModule_namespaces[] = {
@@ -7174,6 +7826,8 @@ static swig_type_info _swigt__p_Input = {"_p_Input", "Input *", 0, 0, (void*)&_w
 static swig_type_info _swigt__p_Mesh = {"_p_Mesh", "Mesh *", 0, 0, (void*)&_wrap_class_Mesh, 0};
 static swig_type_info _swigt__p_Model = {"_p_Model", "Model *", 0, 0, (void*)&_wrap_class_Model, 0};
 static swig_type_info _swigt__p_Quad = {"_p_Quad", "Quad *", 0, 0, (void*)&_wrap_class_Quad, 0};
+static swig_type_info _swigt__p_Quat = {"_p_Quat", "struct Quat *|Quat *", 0, 0, (void*)&_wrap_class_Quat, 0};
+static swig_type_info _swigt__p_Size = {"_p_Size", "Size *", 0, 0, (void*)&_wrap_class_Size, 0};
 static swig_type_info _swigt__p_Sprite = {"_p_Sprite", "Sprite *", 0, 0, (void*)&_wrap_class_Sprite, 0};
 static swig_type_info _swigt__p_Texture = {"_p_Texture", "Texture *", 0, 0, (void*)&_wrap_class_Texture, 0};
 static swig_type_info _swigt__p_Type = {"_p_Type", "enum Type *|Type *", 0, 0, (void*)0, 0};
@@ -7190,6 +7844,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mesh,
   &_swigt__p_Model,
   &_swigt__p_Quad,
+  &_swigt__p_Quat,
+  &_swigt__p_Size,
   &_swigt__p_Sprite,
   &_swigt__p_Texture,
   &_swigt__p_Type,
@@ -7206,6 +7862,8 @@ static swig_cast_info _swigc__p_Input[] = {  {&_swigt__p_Input, 0, 0, 0},{0, 0, 
 static swig_cast_info _swigc__p_Mesh[] = {  {&_swigt__p_Mesh, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Model[] = {  {&_swigt__p_Model, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Quad[] = {  {&_swigt__p_Quad, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Quat[] = {  {&_swigt__p_Quat, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Size[] = {  {&_swigt__p_Size, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Sprite[] = {  {&_swigt__p_Sprite, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Texture[] = {  {&_swigt__p_Texture, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
@@ -7222,6 +7880,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mesh,
   _swigc__p_Model,
   _swigc__p_Quad,
+  _swigc__p_Quat,
+  _swigc__p_Size,
   _swigc__p_Sprite,
   _swigc__p_Texture,
   _swigc__p_Type,

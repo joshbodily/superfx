@@ -1,31 +1,32 @@
-arwing = SuperFX.Entity()
-SuperFX.new_mesh_entity(arwing, "starfox.ply")
 
-ground = SuperFX.Entity()
-SuperFX.new_mesh_entity(ground, "ground.ply")
-SuperFX.scale(ground, 20.0, 20.0, 20.0)
+-- Intro
+Intro = class(function(intro, params)
+  sprite = Sprite({sprite="logo.png", location={0, 0, 0}, scale={3, 1, 3}})
+  add_object(sprite, "logo")
 
-elevator = SuperFX.Entity()
-SuperFX.new_mesh_entity(elevator, "elevator.ply")
+  intro.entity = SuperFX.Entity()
+  SuperFX.new_mesh_entity(intro.entity, params.url)
 
-platform = SuperFX.Entity()
-SuperFX.new_mesh_entity(platform, "platform.ply")
-SuperFX.translate(platform, 0, 0, -0.5)
+  intro.logo = Quad({sprite="test.png", x=10, y=10})
+  add_object(intro.logo, "test64x64")
 
-camera = SuperFX.Entity()
-SuperFX.new_camera(camera)
-SuperFX.translate(camera, 3, 5, 7)
+  intro.power = Quad({sprite="power_border.png", x=(256 - 64 - 10), y=10})
+  add_object(intro.power, "power_border")
 
-function update()
-  SuperFX.translate(arwing, 0, 0, 0.016)
-  SuperFX.translate(platform, 0, 0, 0.016)
-  SuperFX.moveTo(camera, 3, 5, 7)
-  SuperFX.lookAt(camera, arwing)
+  intro.press_start = Quad({text="Press Start", x=84, y=10})
+  add_object(intro.press_start, "press_start")
+end)
+
+function Intro:update()
+  SuperFX.rotate(self.entity, 0, 0, 1, 0.02)
+
+  input = SuperFX.get_input()
+  if input.start then
+    remove_all_objects()
+    load_level("level.lua")
+  end
 end
 
-function render()
-  SuperFX.render(arwing)
-  SuperFX.render(elevator)
-  SuperFX.render(platform)
-  SuperFX.render_points(ground)
+function Intro:render()
+  SuperFX.render(self.entity)
 end

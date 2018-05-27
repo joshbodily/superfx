@@ -13,12 +13,12 @@ extern void luaopen_SuperFX(lua_State*);
 
 int main() {
   // TODO: Move to lua?
-  Entity background_entity;
+  background_entity.value.quad.texture_id = -1;
   background_entity.type = QUAD;
   background_entity.transform[12] = 0;
   background_entity.transform[13] = 0;
-  background_entity.transform[0] = 512;
-  background_entity.transform[5] = 512;
+  background_entity.transform[0] = 256;
+  background_entity.transform[5] = 256;
   background_entity.value.quad.index = 0;
   background_entity.value.quad.columns = 1;
   background_entity.value.quad.rows = 1;
@@ -28,8 +28,8 @@ int main() {
   fbo_entity.type = QUAD;
   fbo_entity.transform[12] = 0;
   fbo_entity.transform[13] = 0;
-  fbo_entity.transform[0] = 512;
-  fbo_entity.transform[5] = 512;
+  fbo_entity.transform[0] = 256;
+  fbo_entity.transform[5] = 256;
   fbo_entity.value.quad.index = 0;
   fbo_entity.value.quad.columns = 1;
   fbo_entity.value.quad.rows = 1;
@@ -69,9 +69,6 @@ int main() {
 
   load_shaders();
   load_textures();  
-  // TODO: Move to bind
-  Texture* texture = get_texture("sky.png");
-  background_entity.value.quad.texture_id = texture->id;
   load_meshes();
   TTF_Init();
 
@@ -136,7 +133,9 @@ int main() {
   glEnable(GL_CULL_FACE);
   glDisable(GL_LIGHTING);
 
+  init_input();
   bool run = true;
+
   while (run) {
     // -1. Input
     SDL_Event event;
@@ -163,7 +162,9 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // 1. Background
-    render_quad(&background_entity, false);
+    if (background_entity.value.quad.texture_id >= 0) {
+      render_quad(&background_entity, false);
+    }
 		glClear(GL_DEPTH_BUFFER_BIT);
 
     // 2. Render all entities

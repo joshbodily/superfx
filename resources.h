@@ -3,6 +3,9 @@
 #include "superfx.h"
 #include "types.h"
 
+// BG
+Entity background_entity;
+
 // Shaders
 extern GLuint shadow_program;
 extern GLuint mesh_program;

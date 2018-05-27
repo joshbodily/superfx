@@ -2,13 +2,21 @@
 #include "resources.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
+#define m(r,c) (entity->transform[c * 4 + r])
 
 // Camera
 Entity* g_camera;
 float g_mat_perspective[16];
 float g_mat_shadow[16];
 
-void new_quad_entity(Entity* entity, const char* texture_name) {
+void set_background(const char* texture_name) {
+  assert(texture_name);
+  Texture* texture = get_texture(texture_name);
+  assert(texture);
+  background_entity.value.quad.texture_id = texture->id;
+}
+
+Size new_quad_entity(Entity* entity, const char* texture_name) {
   assert(entity);
   assert(texture_name);
 
@@ -22,14 +30,21 @@ void new_quad_entity(Entity* entity, const char* texture_name) {
     }
   }
   assert(texture_index != -1 && "Could not find texture");
+  Size s;
+  s.width = g_textures[texture_index].width;
+  s.height = g_textures[texture_index].height;
 
   entity->value.quad.index = 0;
-  entity->value.quad.rows = 2;
-  entity->value.quad.columns = 2;
+  entity->value.quad.rows = 1;
+  entity->value.quad.columns = 1;
 
   entity->type = QUAD;
+  entity->transform[0] = 1.0;
+  entity->transform[5] = 1.0;
   GLuint texture_id = g_textures[texture_index].id;
   entity->value.quad.texture_id = texture_id;
+
+  return s;
 }
 
 void set_quad_index(Entity* entity, int index) {
@@ -38,7 +53,7 @@ void set_quad_index(Entity* entity, int index) {
   entity->value.quad.index = index; 
 }
 
-void new_text_quad_entity(Entity* entity, const char* text) {
+Size new_text_quad_entity(Entity* entity, const char* text) {
   assert(entity);
   assert(text);
 
@@ -49,19 +64,24 @@ void new_text_quad_entity(Entity* entity, const char* text) {
   glGenTextures(1, &texture);
   SDL_Color color = {255, 255, 255};
   int width, height;
-  create_text("fonts/MEGAMAN10.ttf", 32, text, color, texture, &width, &height);
+  create_text("fonts/AU_Peto.ttf", 12, text, color, texture, &width, &height);
 
   entity->value.quad.index = 0;
   entity->value.quad.rows = 1;
   entity->value.quad.columns = 1;
 
   entity->type = QUAD;
-  entity->transform[0] = width;
-  entity->transform[5] = height;
+  entity->transform[0] = 1.0;
+  entity->transform[5] = 1.0;
   entity->value.quad.texture_id = texture;
+
+  Size s;
+  s.width = width;
+  s.height = height;
+  return s;
 }
 
-void new_sprite_entity(Entity* entity, const char* texture_name) {
+void new_sprite_entity(Entity* entity, const char* texture_name, int rows, int columns) {
   assert(entity);
   assert(texture_name);
 
@@ -78,8 +98,8 @@ void new_sprite_entity(Entity* entity, const char* texture_name) {
 
   entity->type = SPRITE;
   entity->value.sprite.index = 0;
-  entity->value.sprite.rows = 1;
-  entity->value.sprite.columns = 12;
+  entity->value.sprite.rows = rows;
+  entity->value.sprite.columns = columns;
 
   GLuint texture_id = g_textures[texture_index].id;
   entity->value.sprite.texture_id = texture_id;
@@ -238,8 +258,8 @@ void render_quad(const Entity* entity, bool invert) {
 
   float x_normalized = (x - 128.0) / 128.0;
   float y_normalized = (y - 128.0) / 128.0;
-  float width_normalized = w / 256.0;
-  float height_normalized = h / 256.0;
+  float width_normalized = w / 128.0;
+  float height_normalized = h / 128.0;
 
   float top = 1.0f;
   float bottom = 0.0f;
@@ -332,6 +352,46 @@ Vec3 get_location(Entity* entity) {
   return ret;
 }
 
+//void print_orientation(Entity* entity) {
+void print_rotation(Entity* entity) {
+  /*assert(entity); 
+  entity->transform;
+  float quat[4];
+  float w = sqrt(1.0 + m(0,0) + m(1,1) + m(2,2)) / 2.0;
+  double w4 = (4.0 * w);
+  float x = (m(2,1) - m(1,2)) / w4;
+  float y = (m(0,2) - m(2,0)) / w4;
+  float z = (m(1,0) - m(0,1)) / w4;
+  printf("%f %f %f %f\n", x, y, z, w);*/
+  assert(entity);
+  float t = m(0,0) + m(1,1) + m(2,2);
+  float r = sqrt(1.0 + t);
+  float w = 0.5f * r;
+  float x = copysign(0.5f * sqrt(1.0f + m(0,0) - m(1,1) - m(2,2)), m(2,1) - m(1,2));
+  float y = copysign(0.5f * sqrt(1.0f - m(0,0) + m(1,1) - m(2,2)), m(0,2) - m(2,0));
+  float z = copysign(0.5f * sqrt(1.0f - m(0,0) - m(1,1) + m(2,2)), m(1,0) - m(0,1));
+  printf("{%f %f %f %f %f %f %f},\n", x, y, z, w, entity->transform[12], entity->transform[13], entity->transform[14]);
+}
+
+Quat slerp(float x0, float y0, float z0, float w0, float x1, float y1, float z1, float w1, float t) {
+  float out[4]; 
+  float in1[4] = {x0, y0, z0, w0};
+  float in2[4] = {x1, y1, z1, w1};
+  quat_slerp(in1, in2, t, out);
+  Quat ret;
+  ret.x = out[0];
+  ret.y = out[1];
+  ret.z = out[2];
+  ret.w = out[3];
+  return ret;
+}
+
+void rotateQuat(Entity* entity, float x, float y, float z, float w) {
+  //quat_t quat_toMat4(quat_t quat, mat4_t dest) {
+  float quat[4] = {x, y, z, w};
+  quat_toMat4(quat, entity->transform);
+}
+
 void move_to(Entity* entity, float x, float y, float z) {
   assert(entity);
 
@@ -382,6 +442,15 @@ Vec3 transform(Entity* entity, float x, float y, float z) {
   return ret;
 }
 
+void set_scale(Entity* entity, float x, float y, float z) {
+  assert(entity);
+  mat4_t xform = entity->transform;
+  assert(xform);
+  xform[0] = x;
+  xform[5] = y;
+  xform[10] = z;
+}
+
 void scale(Entity* entity, float x, float y, float z) {
   assert(entity);
   mat4_t xform = entity->transform;
@@ -397,6 +466,15 @@ void rotate(Entity* entity, float x, float y, float z, float angle) {
   assert(xform);
   float axis[3] = {x, y, z};
   mat4_rotate(xform, angle, axis, NULL);
+}
+
+void rotateXYZ(Entity* entity, float x, float y, float z) {
+  assert(entity);
+  mat4_t xform = entity->transform;
+  assert(xform);
+  mat4_rotateX(xform, x, NULL);
+  mat4_rotateY(xform, y, NULL);
+  mat4_rotateZ(xform, z, NULL);
 }
 
 void look_at(Entity* camera, Entity* target) {
@@ -435,9 +513,9 @@ bool collide(Entity* dynamic_object, Entity* object) { //, vec3_t normal) {
   assert(object_mesh);
 
   // for (int i = 0; i < ...) { TODO
-  float arwing1[3] = { -0.762492, -0.313925, 0.985007 };
-  float arwing2[3] = { 0.001113, -0.050108, -0.985007 };
-  float arwing3[3] = { 0.762492, -0.313925, 0.985007 };
+  float arwing1[3] = {-0.762492, -0.985007, -0.313925};
+  float arwing2[3] = {0.001113,  0.985007, -0.050108};
+  float arwing3[3] = {0.762492, -0.985007, -0.313925};
   mat4_multiplyVec3(inverse_world, arwing1, NULL);
   mat4_multiplyVec3(inverse_world, arwing2, NULL);
   mat4_multiplyVec3(inverse_world, arwing3, NULL);

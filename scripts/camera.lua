@@ -2,7 +2,7 @@
 Camera = class(function(camera, params)
   camera.entity = SuperFX.Entity()  
   SuperFX.init_camera(camera.entity)
-  SuperFX.move_to(camera.entity, 3, 5, 7)
+  --SuperFX.move_to(camera.entity, 3, 5, 7)
 end)
 
 function Camera:render()

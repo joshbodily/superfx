@@ -1,17 +1,33 @@
 require 'scripts/class'
+require 'scripts/classes/training1'
+require 'scripts/classes/slippy'
 require 'scripts/arwing'
 require 'scripts/camera'
 require 'scripts/ground'
-require 'scripts/worldspawn'
 require 'scripts/ring'
+require 'scripts/target'
+require 'scripts/utils'
+require 'scripts/worldspawn'
+require 'scripts/intro'
 
 objects = {}
+data = {}
 
 function find_object_by_id(id)
   for key,object in pairs(objects) do
     if object.id == id then return object end
   end
+  print("Couldn't find object" .. id)
   assert(nil)
+end
+
+function remove_all_objects()
+  for k in pairs(objects) do
+    objects[k] = nil
+  end
+  for k in pairs(data) do
+    objects[k] = nil
+  end
 end
 
 function remove_object(doomed)
@@ -23,32 +39,59 @@ function remove_object(doomed)
 end
 
 function add_object(object, id)
+  assert(id)
   object.id = id
   table.insert(objects, object)
 end
 
+function spawn_item(object)
+  klass = object.params.class or "Worldspawn"
+  spawn = loadstring("return " .. klass .. "(object)")()
+  assert(spawn)
+  spawn.id = object.id
+  spawn.render_order = 0
+  table.insert(objects, spawn)
+end
+
 function load_level(level)
   objects = {}
-  data = dofile("scripts/" .. level)
-  for k,o in pairs(data.objects) do
-    key = k
+  data = dofile("scripts/" .. level).objects
+  for k,o in ipairs(data) do
+    k = key
     object = o
-
-    klass = object.params.class or "Worldspawn"
-    spawn = loadstring("return " .. klass .. "(object)")()
-    assert(spawn)
-    spawn.id = object.id
-    spawn.render_order = 0
-    table.insert(objects, spawn)
+    if object.params.spawn == "true" then
+      spawn_item(object)
+    end
   end
+  data = remove_if(data, function(object) return object.params.spawn == "true" end)
+  sort(data, function(a, b) return a.location[2] < b.location[2] end)
 end
 
 function update(dt)
+  -- "Late" spawn new objects
+  arwing = find_object_by_id("arwing")
+  arwing_position = SuperFX.get_location(arwing.entity).y
+  for k,o in ipairs(data) do
+    object = o
+    if object.location[2] < arwing_position + 30.0 then
+      spawn_item(object)
+      table.remove(data, k)
+      break
+    end
+  end
+
   for key,object in pairs(objects) do
     object:update(dt)
   end
-  -- Do collision detection
-  for key,object in pairs(objects) do
+
+  -- Remove objects that have gone behind
+  for k,object in ipairs(objects) do
+    position = SuperFX.get_location(object.entity).y
+    if object.remove_after and position < arwing_position + object.remove_after then
+      --print("Removing", k, object.id, position, arwing_position)
+      table.remove(objects, k)
+      break
+    end
   end
 end
 
@@ -90,4 +133,6 @@ function render()
   end
 end
 
-load_level("level.lua")
+--load_level("level.lua")
+--load_level("intro_screen.lua")
+load_level("training1.lua")

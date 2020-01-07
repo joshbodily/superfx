@@ -8,6 +8,7 @@ Target = class(function(target, object)
   SuperFX.new_mesh_entity(target.entity, object.url)
   SuperFX.move_to(target.entity, object.location[1], object.location[2], object.location[3])
   SuperFX.scale(target.entity, object.scale[1], object.scale[2], object.scale[3])
+  SuperFX.rotateXYZ(target.entity, object.rotation[1], object.rotation[2], object.rotation[3])
 end)
 
 function Target:update()

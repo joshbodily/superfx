@@ -12,6 +12,7 @@ require 'scripts/intro'
 
 objects = {}
 data = {}
+paused = false
 
 function find_object_by_id(id)
   for key,object in pairs(objects) do
@@ -68,6 +69,17 @@ function load_level(level)
 end
 
 function update(dt)
+  -- Pause / Unpause
+  input = SuperFX.get_input()
+  if not paused and input.start_pressed then
+    --print("Pausing")
+    paused = true 
+  elseif paused and input.start_pressed then
+    --print("Unpausing")
+    paused = false 
+  end
+  if paused then return end
+
   -- "Late" spawn new objects
   arwing = find_object_by_id("arwing")
   arwing_position = SuperFX.get_location(arwing.entity).y
@@ -75,20 +87,21 @@ function update(dt)
     object = o
     if object.location[2] < arwing_position + 30.0 then
       spawn_item(object)
+      print("Removing", k, object.id)
       table.remove(data, k)
       break
     end
   end
 
   for key,object in pairs(objects) do
-    object:update(dt)
+    object:update(dt, arwing)
   end
 
   -- Remove objects that have gone behind
   for k,object in ipairs(objects) do
     position = SuperFX.get_location(object.entity).y
     if object.remove_after and position < arwing_position + object.remove_after then
-      --print("Removing", k, object.id, position, arwing_position)
+      print("Removing", k, object.id)
       table.remove(objects, k)
       break
     end
@@ -133,6 +146,6 @@ function render()
   end
 end
 
---load_level("level.lua")
+load_level("level.lua")
 --load_level("intro_screen.lua")
-load_level("training1.lua")
+--load_level("training1.lua")

@@ -71,6 +71,8 @@ typedef struct {
   bool right_shoulder;
   bool left_joystick;
   bool right_joystick;
+
+  bool start_pressed;
 } Input;
 
 typedef enum Type {

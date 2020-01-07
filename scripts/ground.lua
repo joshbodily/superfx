@@ -13,6 +13,14 @@ function Ground:update()
   SuperFX.set_translation_world(self.entity, vec.x - x, vec.y + 20 - y, 0)
 end
 
+function Ground:arwing_collide(arwing)
+  if SuperFX.collide(arwing.entity, self.entity) then
+    SuperFX.translate(arwing.entity, 0, 0, 0.3)
+    arwing.roll = 0.0
+    arwing.pitch = 0.0
+  end
+end
+
 function Ground:render()
   SuperFX.render_points(self.entity)
   SuperFX.move_to(self.entity, vec.x, vec.y, 0)

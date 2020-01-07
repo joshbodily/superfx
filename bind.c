@@ -423,6 +423,13 @@ void translate(Entity* entity, float x, float y, float z) {
   mat4_translate(xform, velocity_vector, NULL);
 }
 
+void reset_rotation(Entity* entity, float x, float y, float z) {
+  /*assert(entity);
+  mat4_t xform = entity->transform;
+  assert(xform);
+  mat4_identity(xform);*/
+}
+
 void set_transform(Entity* src, Entity* dst) {
   assert(src);
   assert(dst);
@@ -520,15 +527,28 @@ bool collide(Entity* dynamic_object, Entity* object) { //, vec3_t normal) {
   mat4_multiplyVec3(inverse_world, arwing2, NULL);
   mat4_multiplyVec3(inverse_world, arwing3, NULL);
 
+ //* int tri_tri_intersect_with_isectline(float V0[3],float V1[3],float V2[3], 
+ //*				        float U0[3],float U1[3],float U2[3],int *coplanar,
+ //*				        float isectpt1[3],float isectpt2[3]);
+
   for (int i = 0; i < object_mesh->num_indices; i += 3) {
     float* vertex1 = &object_mesh->vertices[ object_mesh->indices[i] * STRIDE ];
     float* vertex2 = &object_mesh->vertices[ object_mesh->indices[i + 1] * STRIDE ];
     float* vertex3 = &object_mesh->vertices[ object_mesh->indices[i + 2] * STRIDE ];
-    if (tri_tri_intersect(arwing1, arwing2, arwing3, vertex1, vertex2, vertex3)) {
+    float pt1[3];
+    float pt2[3];
+    int coplanar = 0;
+    if (tri_tri_intersect_with_isectline(arwing1, arwing2, arwing3, vertex1, vertex2, vertex3, &coplanar, pt1, pt2)) {
       //normal[0] = object_mesh->vertices[ object_mesh->indices[i] * STRIDE ];
       //normal[1] = object_mesh->vertices[ object_mesh->indices[i] * STRIDE + 1 ];
       //normal[2] = object_mesh->vertices[ object_mesh->indices[i] * STRIDE + 2 ];
-      printf("colliding\n");
+
+      //translate(dynamic_object, pt2[0] - pt1[0], pt2[1] - pt1[1], pt2[2] - pt1[2]);
+
+      //translate(dynamic_object, 0.0f, 0.0f, 5.0f);
+      //printf("%f %f %f", pt2[0] - pt1[0], pt2[1] - pt1[1], pt2[2] - pt1[2]);
+//void translate(Entity* entity, float x, float y, float z) {
+      //printf("colliding\n");
       return true;
     }
   }

@@ -137,6 +137,9 @@ int main() {
   bool run = true;
 
   while (run) {
+    // -2. Reset input
+    g_input.start_pressed = false;
+
     // -1. Input
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
@@ -155,6 +158,10 @@ int main() {
       SDL_LogError(SDL_LOG_CATEGORY_ASSERT, "Error %s\n", lua_tostring(L, -1));
       lua_pop(L, 1);
     }
+
+    // Reset input to detect button presses
+    //g_input.start = false;
+    //g_input.start_pressed = false;
 
     glBindFramebuffer(GL_FRAMEBUFFER, fboId);
 		glViewport(0, 0, 256, 256);

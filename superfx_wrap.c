@@ -5892,6 +5892,56 @@ fail:
 }
 
 
+static int _wrap_Input_start_pressed_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("Input::start_pressed",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::start_pressed",1,"Input *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("Input::start_pressed",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_start_pressed_set",1,SWIGTYPE_p_Input);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  if (arg1) (arg1)->start_pressed = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Input_start_pressed_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Input *arg1 = (Input *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Input::start_pressed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Input::start_pressed",1,"Input *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Input,0))){
+    SWIG_fail_ptr("Input_start_pressed_get",1,SWIGTYPE_p_Input);
+  }
+  
+  result = (bool) ((arg1)->start_pressed);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_new_Input(lua_State* L) {
   int SWIG_arg = 0;
   Input *result = 0 ;
@@ -5943,6 +5993,7 @@ static swig_lua_attribute swig_Input_attributes[] = {
     { "right_shoulder", _wrap_Input_right_shoulder_get, _wrap_Input_right_shoulder_set },
     { "left_joystick", _wrap_Input_left_joystick_get, _wrap_Input_left_joystick_set },
     { "right_joystick", _wrap_Input_right_joystick_get, _wrap_Input_right_joystick_set },
+    { "start_pressed", _wrap_Input_start_pressed_get, _wrap_Input_start_pressed_set },
     {0,0,0}
 };
 static swig_lua_method swig_Input_methods[]= {
@@ -7486,6 +7537,38 @@ fail:
 }
 
 
+static int _wrap_reset_rotation(lua_State* L) {
+  int SWIG_arg = 0;
+  Entity *arg1 = (Entity *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  SWIG_check_num_args("reset_rotation",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("reset_rotation",1,"Entity *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("reset_rotation",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("reset_rotation",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("reset_rotation",4,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Entity,0))){
+    SWIG_fail_ptr("reset_rotation",1,SWIGTYPE_p_Entity);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  reset_rotation(arg1,arg2,arg3,arg4);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_rotate(lua_State* L) {
   int SWIG_arg = 0;
   Entity *arg1 = (Entity *) 0 ;
@@ -7776,6 +7859,7 @@ static swig_lua_method swig_SwigModule_methods[]= {
     { "set_transform", _wrap_set_transform},
     { "scale", _wrap_scale},
     { "set_scale", _wrap_set_scale},
+    { "reset_rotation", _wrap_reset_rotation},
     { "rotate", _wrap_rotate},
     { "rotateQuat", _wrap_rotateQuat},
     { "rotateXYZ", _wrap_rotateXYZ},

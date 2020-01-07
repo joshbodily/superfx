@@ -48,7 +48,6 @@ end)
 
 function Arwing:update(dt)
   PI_2 = math.pi / 2 -- 90 degrees
-  input = SuperFX.get_input()
 
   self.yaw = self.yaw - input.left_x_axis
   self.pitch = self.pitch + input.left_y_axis

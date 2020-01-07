@@ -24,6 +24,8 @@ void render_sprite(const Entity* entity);
 // UI Quads
 void render_quad(const Entity* entity, bool invert);
 
+// 
+
 // Update
 void move_to(Entity* entity, float x, float y, float z);
 Vec3 get_location(Entity* entity);
@@ -35,6 +37,7 @@ Vec3 transform(Entity* entity, float x, float y, float z);
 void set_transform(Entity* src, Entity* dst);
 void scale(Entity* entity, float x, float y, float z);
 void set_scale(Entity* entity, float x, float y, float z);
+void reset_rotation(Entity* entity, float x, float y, float z);
 void rotate(Entity* entity, float x, float y, float z, float angle);
 void rotateQuat(Entity* entity, float x, float y, float z, float w);
 void rotateXYZ(Entity* entity, float x, float y, float z);

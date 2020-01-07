@@ -1,6 +1,7 @@
 // gcc parse.c writepng.c -lpng -lGL
 #include <dirent.h>
-#include <OpenGL/gl.h>
+
+
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
@@ -24,7 +25,8 @@ void create_sprite_entity(Entity* entity, const char* textureName, mat4_t xform)
   assert(entity);
 
   short textureIndex = -1; 
-  for (int i = 0; i < g_textureCount; ++i) {
+  int i;
+  for (i = 0; i < g_textureCount; ++i) {
     if (strcmp(g_textures[i].name, textureName) == 0) {
       textureIndex = i;
     }
@@ -53,7 +55,8 @@ void create_mesh_entity(Entity* entity, const char* modelName, mat4_t xform) {
   assert(entity);
 
   short modelIndex = -1; 
-  for (int i = 0; i < g_modelCount; ++i) {
+  int i;
+  for (i = 0; i < g_modelCount; ++i) {
     if (strcmp(g_models[i].name, modelName) == 0) {
       modelIndex = i;
     }
@@ -113,7 +116,8 @@ int parse_level(Entity *entity, const char* file) {
   assert(sscanf(line, "%d", &count) == 1);
 
   int parse = 0;
-  for (int i = 0; i < count; ++i) {
+  int i;
+  for (i = 0; i < count; ++i) {
     assert(getline(&line, &len, fp) != -1);
     assert(getline(&line, &len, fp) != -1);
     assert(sscanf(line, "url: %s", url) == 1);
@@ -165,6 +169,17 @@ void parse_textures() {
   g_textureCount = count;
 }
 
+TextureDef* get_texture(const char* file_name) {
+  int i;
+  for (i = 0; i < g_textureCount; ++i) {
+    TextureDef* texture = &g_textures[i];
+    if (strcmp(texture->name, file_name) == 0) {
+      return texture;
+    }
+  }
+  return NULL;
+}
+
 void parse_models() {
   DIR *d;
   struct dirent *dir;
@@ -187,9 +202,6 @@ void parse_models() {
         sprintf(path, "models/%s", model->name);
         parse_model(path, model, &model->minx, &model->miny, &model->minz, &model->maxx, &model->maxy, &model->maxz);
         printf("%s >> %f %f %f => %f %f %f\n", path, model->minx, model->miny, model->minz, model->maxx, model->maxy, model->maxz);
-        for (int i = 0; i < model->num_vertices; ++i) {
-          
-        }
       }
     }
     closedir(d);
@@ -227,7 +239,8 @@ void parse_model(const char* path, Mesh* model, float* minx, float* miny, float*
   model->vertices = (GLfloat*)malloc(sizeof(GLfloat) * vertices * 11);
   model->num_vertices = vertices * 11;
   float x, y, z, nx, ny, nz, u, v, r, g, b;
-  for (int i = 0; i < vertices; ++i) {
+  int i;
+  for (i = 0; i < vertices; ++i) {
     getline(&line, &len, fp);
     size_t count = sscanf(line, "%f %f %f %f %f %f %f %f %f %f %f", &x, &y, &z, &nx, &ny, &nz, &u, &v, &r, &g, &b);
     model->vertices[i * 11] = x;
@@ -254,7 +267,7 @@ void parse_model(const char* path, Mesh* model, float* minx, float* miny, float*
   model->indices = (GLuint*)malloc(sizeof(GLuint) * faces * 3);
   model->num_indices = faces * 3;
   int f1, f2, f3;
-  for (int i = 0; i < faces; ++i) {
+  for (i = 0; i < faces; ++i) {
     getline(&line, &len, fp);
     size_t count = sscanf(line, "3 %d %d %d", &(model->indices[3 * i]), &(model->indices[3 * i + 1]), &(model->indices[3 * i + 2]));
     assert(count == 3);

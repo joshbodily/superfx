@@ -15,5 +15,7 @@ void lookAt(Entity* camera, Entity* target);
 
 // Utils
 void loadLevel(const char* level);
+void setBackground(const char* bg);
+void setBackgroundClearColor(short r, short g, short b);
 
 #endif

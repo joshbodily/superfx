@@ -1,7 +1,7 @@
 #ifndef __TEXT_H__
 #define __TEXT_H__
 
-#include <SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 
 typedef struct Font {
   char name[128];

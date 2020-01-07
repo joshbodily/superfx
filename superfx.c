@@ -1,12 +1,21 @@
 #include <glib.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/glext.h>
+#ifdef DARWIN
+  #include <OpenGL/gl.h>
+  #include <OpenGL/glu.h>
+  #include <OpenGL/glext.h>
+  #include <lua.h>
+  #include <lauxlib.h>
+  #include <lualib.h>
+#else
+  #include <GL/gl.h>
+  #include <GL/glu.h>
+  #include <GL/glext.h>
+  #include <lua5.1/lua.h>
+  #include <lua5.1/lualib.h>
+  #include <lua5.1/lauxlib.h>
+#endif
 #include <SDL2/SDL.h>
 #include <gl-matrix.h>
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -473,7 +482,8 @@ int main() {
   //ttfTextureId = create_text("MEGAMAN10.ttf", "This is a test", white, &w, &h);
 
   // setup lua
-  FILE* file = fopen("scripts/level1.lua", "r");
+  //FILE* file = fopen("scripts/level1.lua", "r");
+  FILE* file = fopen("scripts/intro.lua", "r");
   size_t read = fread(script, 1, 4096, file);
   error = luaL_loadbuffer(L, script, read, "line") || lua_pcall(L, 0, 0, 0);
   if (error) {
@@ -527,6 +537,7 @@ int main() {
 		
   // Main Loop
   short run = 1;
+  bool console = 0;
   SDL_Event event;
   float rot = 0.0;
 
@@ -559,15 +570,21 @@ int main() {
       }
       processJoystickInput(&event);
       processKeyboardInput(&event);
+
+      if (event.type == SDL_KEYDOWN) {
+        if (event.key.keysym.sym == SDLK_BACKQUOTE) { console = !console; }
+      }
     }
 
     // Process logic
     lua_getfield(L, LUA_GLOBALSINDEX, "update");
-    error = lua_pcall(L, 0, 0, 0);
+    lua_pushboolean(L, console);
+    error = lua_pcall(L, 1, 0, 0);
     if (error) {
       fprintf(stderr, "Error %s\n", lua_tostring(L, -1));
       lua_pop(L, 1);
     }
+    console = false;
     // lua_gc(L, LUA_GCCOLLECT, 0);
 
 		glEnable(GL_DEPTH_TEST);
@@ -582,7 +599,9 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // 1. Background
-    renderQuad(g_textures[3].id, 0, 0, 256 * 2, 256 * 2, false);
+    TextureDef* texture = get_texture("sky.png");
+    assert(texture);
+    renderQuad(texture->id, 0, 0, 256 * 2, 256 * 2, false);
     // Text
     //renderQuad(ttfTextureId, 0, 0, w, h, TRUE);
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -597,7 +616,9 @@ int main() {
     // 3. UI
 		glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
-    renderQuad(g_textures[2].id, 8, 8, 64 * 2, 64 * 2, false);
+    texture = get_texture("slippy.png");
+    assert(texture);
+    renderQuad(texture->id, 8, 8, 64 * 2, 64 * 2, false);
 
     render_console(ttfTextureId);
 
@@ -606,7 +627,7 @@ int main() {
     glViewport(0, 0, 512, 512);
     glClearColor(0, 0, 0, 255);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    renderQuad(textureId, 0, 0, 512, 512, FALSE);
+    renderQuad(textureId, 0, 0, 512, 512, false);
 
     // Collision Test-Bed
     // TODO: For each model in level

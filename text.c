@@ -1,4 +1,8 @@
-#include <OpenGL/gl.h>
+#ifdef DARWIN
+  #include <OpenGL/gl.h>
+#else
+  #include <GL/gl.h>
+#endif
 #include <assert.h>
 #include <dirent.h>
 #include "text.h"
@@ -26,7 +30,7 @@ void init_fonts() {
         Font* font = &(g_fonts[i++]);
         font->ttf = TTF_OpenFont("fonts/MEGAMAN10.ttf", 32);
         strcpy(font->name, dir->d_name);
-        SDL_Log("Loading font %s %x", font->name, font->ttf);
+        SDL_Log("Loading font %s %p", font->name, font->ttf);
         //char path[128];
         //sprintf(path, "models/%s", model->name);
       }

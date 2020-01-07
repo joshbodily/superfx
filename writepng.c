@@ -1,4 +1,8 @@
-#include <OpenGL/gl.h>
+#ifdef DARWIN
+  #include <OpenGL/gl.h>
+#else
+  #include <GL/gl.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <png.h>

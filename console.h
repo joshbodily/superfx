@@ -2,7 +2,7 @@
 #define __CONSOLE_H__
 
 #include <SDL2/SDL.h>
-#include <lua.h>
+#include <lua5.1/lua.h>
 #include <stdbool.h>
 
 typedef struct Console {

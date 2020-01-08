@@ -11,12 +11,15 @@ void new_mesh_entity(Entity* entity, const char* model_name);
 void new_sprite_entity(Entity* entity, const char* texture_name, int rows, int columns);
 Size new_quad_entity(Entity* entity, const char* texture_name);
 void set_quad_index(Entity* entity, int index);
-Size new_text_quad_entity(Entity* entity, const char* text);
+Size new_text_quad_entity(Entity* entity, const char* text, int size, const char* font);
 //void create_mesh_entity(Entity* entity, const char* model_name, mat4_t xform);
 //void create_sprite_entity(Entity* entity, const char* texture_name, mat4_t xform);
 
+void add_child(Entity* parent, Entity* child);
+
 // Models 
 void render(const Entity* entity);
+void render_model(const Entity* entity, vec3_t out, GLuint mode);
 void render_points(const Entity* entity);
 void render_shadow(const Entity* entity);
 // Sprites
@@ -31,6 +34,8 @@ void print_rotation(Entity* entity);
 void identity(Entity* entity);
 void set_translation_world(Entity* entity, float x, float y, float z);
 void translate(Entity* entity, float x, float y, float z);
+void forward(Entity* entity, float magnitude);
+void strafe(Entity* entity, float magnitude);
 Vec3 transform(Entity* entity, float x, float y, float z);
 void set_transform(Entity* src, Entity* dst);
 void scale(Entity* entity, float x, float y, float z);
@@ -42,7 +47,7 @@ Quat slerp(float x0, float y0, float z0, float w0, float x1, float y1, float z1,
 
 // Camera
 void init_camera(Entity* entity);
-void look_at(Entity* camera, Entity* target);
+void look_at_pos(Entity* camera, vec3_t pos); void look_at_entity(Entity* camera, Entity* target);
 
 // Input
 Input get_input();

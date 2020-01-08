@@ -2,6 +2,18 @@
 
 #include "superfx.h"
 
+typedef struct Vertex {
+  float x, y, z;
+  float nx, ny, nz;
+  float u, v;
+  unsigned char r, g, b;
+} Vertex;
+
+typedef struct Face {
+  int first, second, third;
+} Face;
+
+
 typedef struct Quat {
   float x;
   float y;
@@ -85,6 +97,7 @@ typedef struct Entity Entity;
 typedef struct {
   short mode;
   short mesh_index; 
+  short texture_id;
 } Model;
 
 typedef struct {
@@ -98,6 +111,8 @@ struct Entity {
   Type type;
   float transform[16];
   float inverse_world[16];
+  Entity* parent;
+  Entity* child;
   union {
     Model model;
     Sprite sprite;

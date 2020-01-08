@@ -133,6 +133,6 @@ function render()
   end
 end
 
---load_level("level.lua")
+load_level("level.lua")
 --load_level("intro_screen.lua")
-load_level("training1.lua")
+--load_level("training1.lua")

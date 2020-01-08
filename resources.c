@@ -4,21 +4,22 @@
 #include "utils.h"
 
 GLuint shadow_program = 0;
-GLuint mesh_program = 0;
+//GLuint mesh_program = 0;
+GLuint texture_program = 0;
+GLuint color_program = 0;
 GLuint sprite_program = 0;
 GLuint quad_program = 0;
-int g_mesh_count = 0;
 int g_texture_count = 0;
+GList* g_meshes_list = NULL;
 
 void load_mesh(const char* path, Mesh* mesh, float* minx, float* miny, float* minz, float* maxx, float* maxy, float* maxz);
 GLuint png_texture_load(const char * file_name, int * width, int * height);
-int compile_shaders(const char* vert_file, const char* frag_file, GLuint* program);
 
 void load_shaders() {
-	compile_shaders("shaders/shadow.vert", "shaders/shadow.frag", &shadow_program);
-	compile_shaders("shaders/model.vert", "shaders/model.frag", &mesh_program);
-	compile_shaders("shaders/sprite.vert", "shaders/sprite.frag", &sprite_program);
-	compile_shaders("shaders/quad.vert", "shaders/quad.frag", &quad_program);
+	//compile_shaders("shaders/shadow.vert", "shaders/shadow.frag", &shadow_program);
+	//compile_shaders("shaders/model.vert", "shaders/model.frag", &mesh_program);
+	//compile_shaders("shaders/sprite.vert", "shaders/sprite.frag", &sprite_program);
+	//compile_shaders("shaders/quad.vert", "shaders/quad.frag", &quad_program);
 }
 
 int compile_shaders(const char* vert_file, const char* frag_file, GLuint* program) {
@@ -91,19 +92,12 @@ void load_meshes() {
   DIR *d;
   struct dirent *dir;
   d = opendir("models");
-  int count = 0;
   if (d) {
-    while ((dir = readdir(d)) != NULL) {
-      if (strstr(dir->d_name, ".ply") != NULL) {
-        count++;
-      }
-    }
-    rewinddir(d);
-    g_meshes = (Mesh*)malloc(sizeof(Mesh) * count);
     int i = 0;
     while ((dir = readdir(d)) != NULL) {
       if (strstr(dir->d_name, ".ply") != NULL) {
-        Mesh* model = &(g_meshes[i++]);
+        Mesh* model = (Mesh*)malloc(sizeof(Mesh));
+        g_meshes_list = g_list_append(g_meshes_list, (void*)model);
         strcpy(model->name, dir->d_name);
         char path[128];
         sprintf(path, "models/%s", model->name);
@@ -116,14 +110,63 @@ void load_meshes() {
     }
     closedir(d);
   }
+}
 
-  g_mesh_count = count;
+int get_mesh_index(const char* model_name) {
+  for (int i = 0; i < g_list_length(g_meshes_list); ++i) {
+    Mesh* item = (Mesh*)g_list_nth_data(g_meshes_list, i);
+    assert(item);
+    printf("Comparing %s => %s\n", model_name, item->name);
+    if (strcmp(model_name, item->name) == 0) return i;
+  }
+  return -1;
 }
 
 Mesh* get_entity_mesh(const Entity* entity) {
-  assert(entity->value.model.mesh_index < g_mesh_count);
+  //printf("Index => %d\n", entity->value.model.mesh_index);
+  Mesh* item = (Mesh*)g_list_nth_data(g_meshes_list, entity->value.model.mesh_index);
+  assert(item);
+  return item;
+}
 
-  return g_meshes + entity->value.model.mesh_index;
+void create_mesh(const char* name, Vertex vertices[], int num_vertices, Face faces[], int num_faces) {
+  Mesh* mesh = (Mesh*)malloc(sizeof(Mesh));
+  strcpy(mesh->name, name);
+  printf("Creating mesh %s\n", mesh->name);
+  g_meshes_list = g_list_append(g_meshes_list, (void*)mesh);
+
+  // Vertices
+  mesh->vertices = (GLfloat*)malloc(sizeof(GLfloat) * num_vertices * 11);
+  mesh->num_vertices = num_vertices * 11;
+  for (int i = 0; i < num_vertices; ++i) {
+    mesh->vertices[i * 11] = vertices[i].x;
+    mesh->vertices[i * 11 + 1] = vertices[i].y;
+    mesh->vertices[i * 11 + 2] = vertices[i].z;
+    mesh->vertices[i * 11 + 3] = vertices[i].nx;
+    mesh->vertices[i * 11 + 4] = vertices[i].ny;
+    mesh->vertices[i * 11 + 5] = vertices[i].nz;
+    mesh->vertices[i * 11 + 6] = vertices[i].u;
+    mesh->vertices[i * 11 + 7] = vertices[i].v;
+    mesh->vertices[i * 11 + 8] = vertices[i].r / 255.0;
+    mesh->vertices[i * 11 + 9] = vertices[i].g / 255.0;
+    mesh->vertices[i * 11 + 10] = vertices[i].b / 255.0;
+  }
+  // Faces
+  mesh->indices = (GLuint*)malloc(sizeof(GLuint) * num_faces * 3);
+  mesh->num_indices = num_faces * 3;
+  for (int i = 0; i < num_faces; ++i) {
+    mesh->indices[i * 3]  = faces[i].first;
+    mesh->indices[i * 3 + 1] = faces[i].second;
+    mesh->indices[i * 3 + 2] = faces[i].third;
+  }
+
+  glGenBuffers(1, &(mesh->verticesID));
+  glBindBuffer(GL_ARRAY_BUFFER, mesh->verticesID);
+  glBufferData(GL_ARRAY_BUFFER, mesh->num_vertices * sizeof(GLfloat), mesh->vertices, GL_STATIC_DRAW);
+
+  glGenBuffers(1, &(mesh->indicesID));
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->indicesID);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->num_indices * sizeof(GLuint), mesh->indices, GL_STATIC_DRAW);
 }
 
 void load_mesh(const char* path, Mesh* model, float* minx, float* miny, float* minz, float* maxx, float* maxy, float* maxz) {
@@ -218,6 +261,7 @@ void load_textures() {
         char path[128];
         sprintf(path, "textures/%s", texture->name);
         texture->id = png_texture_load(path, &texture->width, &texture->height); 
+        printf("%d => %s\n", texture->id, texture->name);
       }
     }
     closedir(d);
@@ -371,4 +415,5 @@ void create_text(const char* font_name, int size, const char* text, SDL_Color co
   SDL_Surface *glsurface = SDL_CreateRGBSurface(0, *width, *height, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
   SDL_BlitSurface(surface, NULL, glsurface, NULL);
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, *width, *height, 0, GL_RGBA, GL_UNSIGNED_BYTE, glsurface->pixels);
+  SDL_FreeSurface(surface);
 }
